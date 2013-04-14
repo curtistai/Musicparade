@@ -22,6 +22,44 @@ require_once("footer.php"); ?>
 <link rel="stylesheet" type="text/css" href="jsCss/css/page-player.css" /><!-- Page player core CSS -->
 <link rel="stylesheet" type="text/css" href="jsCss/css/flashblock.css" /><!-- soundManager.useFlashBlock: related CSS -->
 <link rel="stylesheet" href="jsCss/css/app.css" />
+
+<script src="http://connect.facebook.net/zh_TW/all.js" type="text/javascript"></script>
+<script>
+FB.init({
+            appId: 114535922062373,
+            status: true, 
+            cookie: true,
+            xfbml: true 
+        });
+
+getLoaginState();
+
+function getLoaginState() {
+	FB.getLoginStatus(function(response) { 
+		if (response.authResponse) {					
+			//同意授權並且登入執行這段
+		}
+		else {
+			login();
+		}
+	});
+}
+
+function login() {
+	FB.login(function(response) {
+		if (response.authResponse) {
+			//同意授權並且登入執行這段
+		}
+		else {
+			alert("須同意應用程式才能進入此頁面");//不同意此應用程式
+		}
+
+	}, { scope:'email' });//要求存取Email
+}
+</script>
+
+
+
 </head>
 <body>
 
@@ -60,21 +98,9 @@ echo printHeader("");
 
 </div>
 
-<!-- Start of second page -->
-<div data-role="page" id="magazine">
-
-
-<?php 
-echo printSiderBar();
-echo printHeader("Magazine"); ?>
-
-<div data-role="content"><img
-	src="http://ihome.cuhk.edu.hk/~s1155028798/3100/mag/mag1.png"
-	width="100%" height="300px"></img> <iframe width="100%" height="500px"
-	src="http://www.youtube.com/embed/olODk6jhMhM?feature=player_detailpage"
-	frameborder="0" allowfullscreen></iframe></div>
 </div>
-</div>
-
+<span id="uid"></span>
+<br>
+<span id="accessToken"></span>
 </body>
 </html>
