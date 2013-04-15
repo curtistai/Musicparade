@@ -317,6 +317,7 @@ function PagePlayer() {
     }
     try {
       document.title = (sTitle?sTitle+' - ':'')+self.pageTitle;
+      document.getElementById('footerMsg').innerHTML = "Playing : "+(sTitle?sTitle+' - ':'');
     } catch(e) {
       // oh well
       self.setPageTitle = function() {

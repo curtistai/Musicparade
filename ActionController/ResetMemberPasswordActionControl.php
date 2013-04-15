@@ -1,4 +1,6 @@
 <?php
+// Facebook login so function fade out
+
 include_once 'MainActionControl.php';
 
 class ResetMemberPasswordActionControl extends MainActionControl

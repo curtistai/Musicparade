@@ -11,52 +11,29 @@ require_once("footer.php"); ?>
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 <title>MusicParade</title>
 
-<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script	src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
 <script src="jsCss/js/soundmanager2.js"></script><!-- soundManager API -->
 <script src="jsCss/js/fb.js"></script>
 <script src="jsCss/js/page-player.js"></script> <!-- Page Player -->
 <script src="jsCss/js/optional-page-player-metadata.js"></script> <!-- Meta UI -->
-<script type="text/javascript" src="http://connect.facebook.net/zh_TW/all.js"></script>
+<script>
+$(document).ready(function(){
+	    $("#searchbox").keypress(function(event) {
+	    	$("#playlistInAppPhp").load("ActionController/searchMusicActionControl.php");
+	    });
+	    
+});
+</script>
 
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css" /><!-- soundManager API END-->
 <link rel="stylesheet" type="text/css" href="jsCss/css/page-player.css" /><!-- Page player core CSS -->
 <link rel="stylesheet" type="text/css" href="jsCss/css/flashblock.css" /><!-- soundManager.useFlashBlock: related CSS -->
 <link rel="stylesheet" href="jsCss/css/app.css" />
 
-    <script>
-FB.init({ appId: '114535922062373',
-    status: true,
-    cookie: true,
-    xfbml: true,
-    oauth: true
-});
-
-$("#FBLogin").click(function () {
-	    alert('tttt');
-    FB.login(function (response) {
-	    FB.getLoginStatus(function (response) {
-    if (response.status === 'connected') {  // ?????? Facebook ??
-        var uid = response.authResponse.userID; // ?? UID
-        var accessToken = response.authResponse.accessToken; // ?? accessToken
-        $("#uid").html("UID?" + uid);
-        $("#accessToken").html("accessToken?" + accessToken);
-    } else if (response.status === 'not_authorized') {  // ??????? Facebook ??
-        alert("??????");
-    } else {    
-    }
-});
-    }, { scope: "email" });
-});
-    </script>
-
-
-
-
 
 </head>
 <body>
-
 <!-- Home -->
 
 <div data-role="page" id="favourite">
@@ -66,9 +43,11 @@ echo printSiderBar();
 echo printHeader("");
  ?>
 
-
+<input 
+	 id="searchbox" value=""
+	placeholder="Join our Music Nation..." />
 <div data-role="content">
-<ul class="playlist">
+<ul class="playlist" id="playlistInAppPhp">
 	<li><a
 		href="http://lianzidi.com/COFFdD0xMzYwNTk5NTQzJmk9NjEuMTM1LjIwOS4yMDMmdT1Tb25ncy92MS9mYWludFFDL2Y3LzgyM2E5YTk5MTc0ODg1M2Y5NTc3MTFmZDBlMmE3MGY3Lm1wMyZtPTlkNDU5YjFjNzUzOTBjMTg4ZTYwNzZkNmExY2IwNDg4JnY9bGlzdGVuJm49u6jT1r+qusPByyZzPXMuaC5lJTIwJnA9bg==.mp3">花又?好了
 	－S.H.E</a></li>
@@ -93,11 +72,6 @@ echo printHeader("");
 </div>
 
 </div>
-<span id="uid"></span>
-<br>
-<span id="accessToken"></span>
-
-<div id="fb-root"></div>
 
 </body>
 </html>
