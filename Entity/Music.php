@@ -165,6 +165,19 @@ class Music
 		return $musList3;
 	}
 	
+	// find music like name
+	public function findMusicLikeName($musicName)
+	{
+		$rawMusList = mysql_query("SELECT * FROM Music WHERE musName like .$musicName.");
+		$musList3 = array();
+		while (($record3 = mysql_fetch_array($rawMusList)))
+		{
+			$musList3[$record3[0]] = new Music($record3[0], $record3[1], $record3[2], $record3[3], $record3[4],$record3[5]);
+		}
+
+		return $musList3;
+	}
+	
 	// Return all music
 	public function findMusic()
 	{

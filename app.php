@@ -1,4 +1,6 @@
-<?php 
+<?php
+session_start();
+
 require_once("header.php");
 require_once("sidebar.php");
 require_once("footer.php"); ?>
@@ -22,7 +24,6 @@ $(document).ready(function(){
 	    $("#searchbox").keypress(function(event) {
 	    	$("#playlistInAppPhp").load("ActionController/searchMusicActionControl.php");
 	    });
-	    
 });
 </script>
 

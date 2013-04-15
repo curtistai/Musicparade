@@ -1,4 +1,9 @@
 <?php
+    require_once ('./Entity/Member.php');
+    require_once ('./Entity/Music.php');
+    require_once ('./Entity/MusicPlayList.php');
+    require_once ('./Entity/MusicPlayList.php');
+    
     class MusicSysControl
     {
         // @var attribute used to store the musicList from Session
@@ -16,75 +21,114 @@
             return $musicList;
         }
         
+        public static function loginSystem($facebookUserId)
+        {
+            $memberEntity = new Member();
+            $memberArray = $memberEntity->findByFacebook($facebookUserId);
+            $member = $memberArray[key($memberArray)];
+            
+            if (sizeof($member) == 0)
+            {
+                return 0;
+            }else{
+                $_SESSION['MemberLoginIn'] = $member;
+                return 1;
+            }
+            
+        }
+
+        public static function registerUser($facebookUserId)
+        {
+            $memberEntity = new Member();
+            $memberSerial = $memberEntity->insert($facebookUserId);
+            
+            $musicListEntity = new MusicPlayList();
+            $musicListEntity->insert($memberSerial, "Music List");
+
+            return 1;
+        }
+
+        
         /*
          @uses Return the music added into the list
          @return Return the music out if is removed, else return false if facing error
         */
-        public static function addMusicIntoList($musicSerial)
+        public static function addMusicIntoList($memSerial, $musicSerial)
         {
-            #$musicEntity = new Music();
-            #$music = $musicEntity::query($musicSerial);
-            
+            $musicEntity = new Music();
+            $music = $musicEntity::findMusicBySerial($musicSerial);
+            print_r($music);
              /*
              if ($music == NULL)
              {
                 self::systemErrorFound("Add Music Into List, Music Not Found ".date("Y-m-d"));
-                return false;
+                return 0;
              }
             */
              
-             
             self::print_test("System Control Run AddMusicIntoList");
-            if(sizeof(self::$MusicList) == 0){
-                self::$MusicList['mus00'] ='play what';
-                print_r(self::$MusicList);
-                
-                #self::$MusicList = array($musicSerial=>$music);
+            if(sizeof($music) == 0){
+                self::systemErrorFound("Add Music Into List, Music Not Found ".date("Y-m-d"));
+                return 0;
             }else{
+                
+                $musicListEntity = new MusicPlayList();
+                
+                $musListArray = $musicListEntity::findMusPlayListByMemSerial($memSerial);
+                $musList = $musListArray[key($musListArray)];
+                $musListSerial = $musList->getMusListSerial();
+                
+                $musicListDetailEntity = new MusicPlayListDetail();
+                $musicListDetailEntity->insert($musicSerial, $musListSerial);
+                
                 self::$MusicList['mus01'] = 'play together';
                 print_r(self::$MusicList);
                 
                 #self::$MusicList = array($musicSerial=>$music);
             }
             
-            return $music;
+            return 1;
         }
         
         /*
          @uses Return the music removed from the list
          @return Return the music out if is removed, else return false if facing error
         */
-        public static function removeMusicFromList($musicSerial)
+        public static function removeMusicFromList($memSerial, $musicSerial)
         {
-            #$musicEntity = new Music();
-            #$music = $musicEntity::query($musicSerial);
+            $musicEntity = new Music();
+            $music = $musicEntity::findMusicBySerial($musicSerial);
             
             /*
              if ($music == NULL)
              {
                 self::systemErrorFound("Remove Music From List, Music Not Found ".date("Y-m-d"));
-                return false;
+                return 0;
              }
             */
             
-            self::print_test("System Control Run removeMusicFromList key: $musicSerial");
-            if(sizeof(self::$MusicList) == 0){
-                return NULL;
+            self::print_test("System Control Run AddMusicIntoList");
+            if(sizeof($music) == 0){
+                self::systemErrorFound("Remove Music From List, Music Not Found ".date("Y-m-d"));
+                return 0;
             }else{
-                foreach (self::$MusicList as $key => $Music)
-                {
-                    self::print_test($key);
-                    
-                    #Delete the relative music from key
-                    if ($key == $musicSerial)
-                    {
-                        unset(self::$MusicList[$key]);
-                        print_r(self::$MusicList);
-                    }
-                }
+                
+                $musicListEntity = new MusicPlayList();
+                
+                $musListArray = $musicListEntity::findMusPlayListByMemSerial($memSerial);
+                $musList = $musListArray[key(musListArray)];
+                $musListSerial = $musList->getMusListSerial();
+                
+                $musicListDetailEntity = new MusicPlayListDetail();
+                $musicListDetailEntity->delete($musicSerial, $musListSerial);
+                
+                self::$MusicList['mus01'] = 'play together';
+                print_r(self::$MusicList);
+                
+                #self::$MusicList = array($musicSerial=>$music);
             }
             
-            return $music;
+            return 1;
         }
         
         /*
@@ -146,6 +190,16 @@
         */
         public static function getMusicList()
         {
+            
+            $musicListEntity = new MusicPlayList();
+                
+            $musList = $musicListEntity::findMusPlayListByMemSerial($memSerial);
+            $musListSerial = $musList->getMusListSerial();
+                
+            $musicListDetailEntity = new MusicPlayListDetail();
+            $musicListDetailEntity->delete($musicSerial, $musListSerial);
+                
+                
             return self::$MusicList;
         }
         
