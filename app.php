@@ -17,46 +17,40 @@ require_once("footer.php"); ?>
 <script src="jsCss/js/fb.js"></script>
 <script src="jsCss/js/page-player.js"></script> <!-- Page Player -->
 <script src="jsCss/js/optional-page-player-metadata.js"></script> <!-- Meta UI -->
+<script type="text/javascript" src="http://connect.facebook.net/zh_TW/all.js"></script>
 
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css" /><!-- soundManager API END-->
 <link rel="stylesheet" type="text/css" href="jsCss/css/page-player.css" /><!-- Page player core CSS -->
 <link rel="stylesheet" type="text/css" href="jsCss/css/flashblock.css" /><!-- soundManager.useFlashBlock: related CSS -->
 <link rel="stylesheet" href="jsCss/css/app.css" />
 
-<script src="http://connect.facebook.net/zh_TW/all.js" type="text/javascript"></script>
-<script>
-FB.init({
-            appId: 114535922062373,
-            status: true, 
-            cookie: true,
-            xfbml: true 
-        });
+    <script>
+FB.init({ appId: '114535922062373',
+    status: true,
+    cookie: true,
+    xfbml: true,
+    oauth: true
+});
 
-getLoaginState();
+$("#FBLogin").click(function () {
+	    alert('tttt');
+    FB.login(function (response) {
+	    FB.getLoginStatus(function (response) {
+    if (response.status === 'connected') {  // ?????? Facebook ??
+        var uid = response.authResponse.userID; // ?? UID
+        var accessToken = response.authResponse.accessToken; // ?? accessToken
+        $("#uid").html("UID?" + uid);
+        $("#accessToken").html("accessToken?" + accessToken);
+    } else if (response.status === 'not_authorized') {  // ??????? Facebook ??
+        alert("??????");
+    } else {    
+    }
+});
+    }, { scope: "email" });
+});
+    </script>
 
-function getLoaginState() {
-	FB.getLoginStatus(function(response) { 
-		if (response.authResponse) {					
-			//同意授權並且登入執行這段
-		}
-		else {
-			login();
-		}
-	});
-}
 
-function login() {
-	FB.login(function(response) {
-		if (response.authResponse) {
-			//同意授權並且登入執行這段
-		}
-		else {
-			alert("須同意應用程式才能進入此頁面");//不同意此應用程式
-		}
-
-	}, { scope:'email' });//要求存取Email
-}
-</script>
 
 
 
@@ -102,5 +96,8 @@ echo printHeader("");
 <span id="uid"></span>
 <br>
 <span id="accessToken"></span>
+
+<div id="fb-root"></div>
+
 </body>
 </html>
