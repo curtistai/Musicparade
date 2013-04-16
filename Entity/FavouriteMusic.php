@@ -49,7 +49,7 @@ class FavouriteMusic
 	//insert
     public function insert($musS,$memS)
 	{
-	   $insertFavouriteMusic = mysql_query("INSERT INTO FavouriteMusic VALUES ('".$musS.'\' ,\''.$memS.'\' , \''.date("Y-m-d").'\')');
+	   $insertFavouriteMusic = mysql_query("INSERT INTO FavoriteMusic VALUES ('".date("Y-m-d").'\', \''.$musS.'\' , \''.$memS.'\')');
 	
 		if (!$insertFavouriteMusic) 
 		{die('Invalid query: ' . mysql_error());}
@@ -62,13 +62,13 @@ class FavouriteMusic
 	
 	// find music by memSerial
 	
-	public function findMusicByMemSerial($memS)
+	public function findFavouriteMusicByMemSerial($memS)
 	{
-		$rawMusList = mysql_query("SELECT * FROM FavouriteMusic WHERE memSerial = $memS ");
+		$rawMusList = mysql_query("SELECT * FROM FavoriteMusic WHERE memSerial = $memS ");
 		$musList = array();
 		while (($record = mysql_fetch_array($rawMusList)))
 		{
-			$musList[$record[0]] = new FavouriteMusic($record[0], $record[1], $record[2]);
+			array_push($musList, new FavouriteMusic($record[0], $record[1], $record[2]));
 		}
 
 		return $musList;
@@ -76,19 +76,28 @@ class FavouriteMusic
 	
 	// find music by musSerial
 	
-	public function findMusicByMusSerial($musS)
+	public function findFavouriteMusicByMusSerial($musS)
 	{
-		$rawMusList = mysql_query("SELECT * FROM FavouriteMusic WHERE musSerial = $musS ");
+		$rawMusList = mysql_query("SELECT * FROM FavoriteMusic WHERE musSerial = $musS ");
 		$musList = array();
 		while (($record = mysql_fetch_array($rawMusList)))
 		{
-			$musList[$record[0]] = new FavouriteMusic($record[0], $record[1], $record[2]);
+			array_push($musList, new FavouriteMusic($record[0], $record[1], $record[2]));
 		}
 
 		return $musList;
 	}
 	
+	//delete
 	
+	public function deleteFavoriteMusicRecord($musS, $memS)
+	{
+		$deleteMusList = mysql_query("DELETE FROM FavoriteMusic WHERE musSerial = $musS and memSerial = $memS");
+	
+		if (!$deleteMusList) 
+		{die('Invalid query: ' . mysql_error());}
+		
+	}
 	
 }
 ?>

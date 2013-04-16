@@ -6,9 +6,9 @@ function printSiderBar(){
 	data-position="left" data-display="push">
 <button type="button" data-theme="c"
 	onclick="window.location = '#favourite';">Favourite</button>
-<button type="button" data-theme="c"
-	onclick="window.location = '#magazine';">Magazine</button>
 <button type="button" data-theme="c">Popular</button>
+<button type="button" data-theme="c">Logout</button>
+
 </div>
 EOF;
 

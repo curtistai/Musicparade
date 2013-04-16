@@ -1,8 +1,9 @@
 <?php
-    require_once ('./Entity/Member.php');
-    require_once ('./Entity/Music.php');
-    require_once ('./Entity/MusicPlayList.php');
-    require_once ('./Entity/MusicPlayList.php');
+    require_once ('../Entity/Member.php');
+    require_once ('../Entity/Music.php');
+    require_once ('../Entity/FavouriteMusic.php');
+    require_once ('../Entity/MusicPlayList.php');
+    require_once ('../Entity/MusicPlayList.php');
     
     class MusicSysControl
     {
@@ -162,27 +163,38 @@
         /*
          @return Return the array of the searched music from database
         */
-        public static function searchMusic()
+        public static function searchMusic($musicName)
         {
-            $Musics = array();
+            $musicEntity = new Music();
+            $musics = $musicEntity->findMusicLikeName($musicName);
             
-            return $Musics;
+            return $musics;
         }
         
         /*
          @uses Add the favorite music into the database from user
         */
-        public static function addFavoriteMusic()
+        public static function addFavoriteMusic($musicSerial)
         {
-            $MusicSerial;
+            $favouriteMusicEntity = new FavouriteMusic();
+            $currentMember = $_SESSION['MemberLoginIn'];
+            $memberSerial = $currentMember->getMemSerial();
+            $favouriteMusicEntity->insert($musicSerial, $memberSerial);
+
+            return $musicSerial;
         }
         
         /*
          @uses Remove the favorite music from the database from user
         */
-        public static function removeFavoriteMusic()
+        public static function removeFavoriteMusic($musicSerial)
         {
-            $MusicSerial;    
+            $favouriteMusicEntity = new FavouriteMusic();
+            $currentMember = $_SESSION['MemberLoginIn'];
+            $memberSerial = $currentMember->getMemSerial();
+            $favouriteMusicEntity->deleteFavoriteMusicRecord($musicSerial, $memberSerial);
+
+            return $musicSerial; 
         }
         
         /*

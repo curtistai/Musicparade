@@ -43,10 +43,8 @@ $(document).ready(function(){
 echo printSiderBar();
 echo printHeader("");
  ?>
-
-<input 
-	 id="searchbox" value=""
-	placeholder="Join our Music Nation..." />
+<div id="searchDIV">
+<input id="searchbox" value="" placeholder="Join our Music Nation..." /> </div>
 <div data-role="content">
 <ul class="playlist" id="playlistInAppPhp">
 	<li><a

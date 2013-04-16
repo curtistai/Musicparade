@@ -9,4 +9,6 @@ class DisplayMusicMainPageActionControl extends MainActionControl
 	}
 }
 
+
+
 ?>

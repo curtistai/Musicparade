@@ -168,7 +168,7 @@ class Music
 	// find music like name
 	public function findMusicLikeName($musicName)
 	{
-		$rawMusList = mysql_query("SELECT * FROM Music WHERE musName like .$musicName.");
+		$rawMusList = mysql_query("SELECT * FROM Music WHERE musName like '%.$musicName.'%");
 		$musList3 = array();
 		while (($record3 = mysql_fetch_array($rawMusList)))
 		{

@@ -3,3 +3,10 @@ ul.playlist li .comment {
 	font-size: 0.65em;
 	opacity: 0.5
 }
+
+#searchDIV {
+	margin-left:1%;
+	width: 97%;
+	text-align: center;
+	
+}
