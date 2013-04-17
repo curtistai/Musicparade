@@ -1,5 +1,5 @@
 <?php
-include_once '../Command/Command.php';
+//include_once '../Command/Command.php';
 
 
 class MainActionControl

@@ -1,9 +1,11 @@
 <?php
 session_start();
+require_once("./ActionController/DisplayMusicMainPageActionControl.php");
 
-require_once("header.php");
-require_once("sidebar.php");
-require_once("footer.php"); ?>
+$controller = new DisplayMusicMainPageActionControl()
+//require_once("header.php");
+//require_once("sidebar.php");
+//require_once("footer.php"); ?>
 
 <html>
 <head>
@@ -33,125 +35,71 @@ require_once("footer.php"); ?>
 
 <div data-role="page" id="popular">
 
-<?php 
-echo printSiderBar();
-echo printHeader("Popular");
+<?php
+$controller->printSiderBar();
+$controller->printHeader("Popular");
  ?>
 <div data-role="content">
 <ul class="playlist" id="playlistInpopular">
-	<li><a
-		href="http://localhost:8888/3100/media/Music/Taylor Swift-I Knew You Were Trouble.mp3">Taylor Swift - I knew you where in trouble</a></li>
-	<li><a
-		href="http://data1.act.qq.com/200810/15/11/122404198538790.mp3?stdfrom=3&bg=0xcddff3&leftbg=0x357dce&lefticon=0xf2f2f2&rightbg=0x357dce&rightbghover=0x4499ee&righticon=0xf2f2f2&righticonhover=0xffffff&text=0x357dce&slider=0x357dce&track=0xffffff&border=0xffffff&loader=0x8ec2f4&autostart=yes&loop=yes&3">安?了
-	－S.H.E </a></li>
-	<li><a href="http://www.xsdcsx.com/sourcefile/0/0/2/2601.mp3">五月天
-	－S.H.E</a></li>
-	<li><a
-		href="http://infinitinb.net/COFFdD0xMzYwNTk4OTI1Jmk9NjEuMTM1LjIwOS4yMDMmdT1Tb25ncy92Mi9mYWludFFDLzUzL2QxLzg0YjczZWNiZmE3MzliZTlkYzBhMWZkN2E3YjZkMTUzLm1wMyZtPWUyZjVjMTBjMDZmNzQxNDJkNGZmYTIwMWFlOTM1YzY5JnY9bGlzdGVuJm49w/zUy7XEvKrL+yZzPbCivKrX0CZwPW4=.mp3">命運的吉他
-	阿吉仔 </a></li>
-	<li><a href="http://view.33591.com:586/2012/11/11/15/1006625.mp3">PSY - Gungnam Style</a></li>
+	    <?php $controller->displayPopularList(); ?>
 </ul>
 </div>
 
-<?php echo printFooter(); ?>
+<?php $controller->printFooter(); ?>
 
 </div>
 
 <!-- Search -->
 <div data-role="page" id="search">
 
-<?php 
-echo printSiderBar();
-echo printHeader("Search");
+<?php
+$controller->printSiderBar();
+$controller->printHeader("Search");
  ?>
 <div id="searchDIV">
 <input id="searchbox" value="" placeholder="Join our Music Nation..." /> </div>
 <div data-role="content">
 <ul class="playlist" id="playlistInSearch">
-	<li><a
-		href="http://lianzidi.com/COFFdD0xMzYwNTk5NTQzJmk9NjEuMTM1LjIwOS4yMDMmdT1Tb25ncy92MS9mYWludFFDL2Y3LzgyM2E5YTk5MTc0ODg1M2Y5NTc3MTFmZDBlMmE3MGY3Lm1wMyZtPTlkNDU5YjFjNzUzOTBjMTg4ZTYwNzZkNmExY2IwNDg4JnY9bGlzdGVuJm49u6jT1r+qusPByyZzPXMuaC5lJTIwJnA9bg==.mp3">花又?好了
-	－S.H.E</a></li>
-	<li><a
-		href="http://data1.act.qq.com/200810/15/11/122404198538790.mp3?stdfrom=3&bg=0xcddff3&leftbg=0x357dce&lefticon=0xf2f2f2&rightbg=0x357dce&rightbghover=0x4499ee&righticon=0xf2f2f2&righticonhover=0xffffff&text=0x357dce&slider=0x357dce&track=0xffffff&border=0xffffff&loader=0x8ec2f4&autostart=yes&loop=yes&3">安?了
-	－S.H.E </a></li>
-	<li><a href="http://www.xsdcsx.com/sourcefile/0/0/2/2601.mp3">五月天
-	－S.H.E</a></li>
-	<li><a
-		href="http://infinitinb.net/COFFdD0xMzYwNTk4OTI1Jmk9NjEuMTM1LjIwOS4yMDMmdT1Tb25ncy92Mi9mYWludFFDLzUzL2QxLzg0YjczZWNiZmE3MzliZTlkYzBhMWZkN2E3YjZkMTUzLm1wMyZtPWUyZjVjMTBjMDZmNzQxNDJkNGZmYTIwMWFlOTM1YzY5JnY9bGlzdGVuJm49w/zUy7XEvKrL+yZzPbCivKrX0CZwPW4=.mp3">命運的吉他
-	阿吉仔 </a></li>
-	<li><a href="http://view.33591.com:586/2012/11/11/15/1006625.mp3">江南Style
-	－PSY</a></li>
-	<li><a
-		href="http://lianzidi.com/COFFdD0xMzYwNTk5ODk1Jmk9NjEuMTM1LjIwOS4yMDMmdT1Tb25ncy92MS9mYWludFFDLzc1L2YxMzc1Zjk5OGMxNzVkNGY0Njg2OTc0ZDlkYTZjNDc1Lm1wMyZtPWU5ODg0MjYyZDk3NTE0MDBkYTA0OWFkODZkZTk2ZDIyJnY9bGlzdGVuJm49TXIuVGF4aSZzPcnZxa7KsbT6JTIwJnA9bg==.mp3">Mr
-	Taxi －少女?代</a></li>
+	    <?php $controller->displaySearchList(); ?>
 </ul>
 </div>
 
-<?php echo printFooter(); ?>
+<?php $controller->printFooter(); ?>
 
 </div>
 
 <!-- Favourite -->
 <div data-role="page" id="favourite">
 
-<?php 
-echo printSiderBar();
-echo printHeader("Favourite");
+ <?php
+$controller->printSiderBar();
+$controller->printHeader("Favourite");
  ?>
 <div data-role="content">
 <ul class="playlist" id="playlistInfavourite">
-	<li><a
-		href="http://lianzidi.com/COFFdD0xMzYwNTk5NTQzJmk9NjEuMTM1LjIwOS4yMDMmdT1Tb25ncy92MS9mYWludFFDL2Y3LzgyM2E5YTk5MTc0ODg1M2Y5NTc3MTFmZDBlMmE3MGY3Lm1wMyZtPTlkNDU5YjFjNzUzOTBjMTg4ZTYwNzZkNmExY2IwNDg4JnY9bGlzdGVuJm49u6jT1r+qusPByyZzPXMuaC5lJTIwJnA9bg==.mp3">花又?好了
-	－S.H.E</a></li>
-	<li><a
-		href="http://data1.act.qq.com/200810/15/11/122404198538790.mp3?stdfrom=3&bg=0xcddff3&leftbg=0x357dce&lefticon=0xf2f2f2&rightbg=0x357dce&rightbghover=0x4499ee&righticon=0xf2f2f2&righticonhover=0xffffff&text=0x357dce&slider=0x357dce&track=0xffffff&border=0xffffff&loader=0x8ec2f4&autostart=yes&loop=yes&3">安?了
-	－S.H.E </a></li>
-	<li><a href="http://www.xsdcsx.com/sourcefile/0/0/2/2601.mp3">五月天
-	－S.H.E</a></li>
-	<li><a
-		href="http://infinitinb.net/COFFdD0xMzYwNTk4OTI1Jmk9NjEuMTM1LjIwOS4yMDMmdT1Tb25ncy92Mi9mYWludFFDLzUzL2QxLzg0YjczZWNiZmE3MzliZTlkYzBhMWZkN2E3YjZkMTUzLm1wMyZtPWUyZjVjMTBjMDZmNzQxNDJkNGZmYTIwMWFlOTM1YzY5JnY9bGlzdGVuJm49w/zUy7XEvKrL+yZzPbCivKrX0CZwPW4=.mp3">命運的吉他
-	阿吉仔 </a></li>
-	<li><a href="http://view.33591.com:586/2012/11/11/15/1006625.mp3">江南Style
-	－PSY</a></li>
-	<li><a
-		href="http://lianzidi.com/COFFdD0xMzYwNTk5ODk1Jmk9NjEuMTM1LjIwOS4yMDMmdT1Tb25ncy92MS9mYWludFFDLzc1L2YxMzc1Zjk5OGMxNzVkNGY0Njg2OTc0ZDlkYTZjNDc1Lm1wMyZtPWU5ODg0MjYyZDk3NTE0MDBkYTA0OWFkODZkZTk2ZDIyJnY9bGlzdGVuJm49TXIuVGF4aSZzPcnZxa7KsbT6JTIwJnA9bg==.mp3">Mr
-	Taxi －少女?代</a></li>
+	    <?php $controller->displayFavouriteList(); ?>
 </ul>
 </div>
 
-<?php echo printFooter(); ?>
+<?php $controller->printFooter(); ?>
 
 </div>
 
 <!-- Playlist -->
 <div data-role="page" id="playlist">
 
-<?php 
-echo printSiderBar();
-echo printHeader("Playlist");
+  <?php
+$controller->printSiderBar();
+$controller->printHeader("Playlist");
  ?>
+
 <div data-role="content">
 <ul class="playlist" id="playlistInplaylist">
-	<li><a
-		href="http://lianzidi.com/COFFdD0xMzYwNTk5NTQzJmk9NjEuMTM1LjIwOS4yMDMmdT1Tb25ncy92MS9mYWludFFDL2Y3LzgyM2E5YTk5MTc0ODg1M2Y5NTc3MTFmZDBlMmE3MGY3Lm1wMyZtPTlkNDU5YjFjNzUzOTBjMTg4ZTYwNzZkNmExY2IwNDg4JnY9bGlzdGVuJm49u6jT1r+qusPByyZzPXMuaC5lJTIwJnA9bg==.mp3">花又?好了
-	－S.H.E</a></li>
-	<li><a
-		href="http://data1.act.qq.com/200810/15/11/122404198538790.mp3?stdfrom=3&bg=0xcddff3&leftbg=0x357dce&lefticon=0xf2f2f2&rightbg=0x357dce&rightbghover=0x4499ee&righticon=0xf2f2f2&righticonhover=0xffffff&text=0x357dce&slider=0x357dce&track=0xffffff&border=0xffffff&loader=0x8ec2f4&autostart=yes&loop=yes&3">安?了
-	－S.H.E </a></li>
-	<li><a href="http://www.xsdcsx.com/sourcefile/0/0/2/2601.mp3">五月天
-	－S.H.E</a></li>
-	<li><a
-		href="http://infinitinb.net/COFFdD0xMzYwNTk4OTI1Jmk9NjEuMTM1LjIwOS4yMDMmdT1Tb25ncy92Mi9mYWludFFDLzUzL2QxLzg0YjczZWNiZmE3MzliZTlkYzBhMWZkN2E3YjZkMTUzLm1wMyZtPWUyZjVjMTBjMDZmNzQxNDJkNGZmYTIwMWFlOTM1YzY5JnY9bGlzdGVuJm49w/zUy7XEvKrL+yZzPbCivKrX0CZwPW4=.mp3">命運的吉他
-	阿吉仔 </a></li>
-	<li><a href="http://view.33591.com:586/2012/11/11/15/1006625.mp3">江南Style
-	－PSY</a></li>
-	<li><a
-		href="http://lianzidi.com/COFFdD0xMzYwNTk5ODk1Jmk9NjEuMTM1LjIwOS4yMDMmdT1Tb25ncy92MS9mYWludFFDLzc1L2YxMzc1Zjk5OGMxNzVkNGY0Njg2OTc0ZDlkYTZjNDc1Lm1wMyZtPWU5ODg0MjYyZDk3NTE0MDBkYTA0OWFkODZkZTk2ZDIyJnY9bGlzdGVuJm49TXIuVGF4aSZzPcnZxa7KsbT6JTIwJnA9bg==.mp3">Mr
-	Taxi －少女?代</a></li>
+	    <?php $controller->displayPlaylist(); ?>
 </ul>
 </div>
 
-<?php echo printFooter(); ?>
+<?php $controller->printFooter(); ?>
 
 </div>
 
