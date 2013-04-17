@@ -2,10 +2,7 @@
 session_start();
 require_once("./ActionController/DisplayMusicMainPageActionControl.php");
 
-$controller = new DisplayMusicMainPageActionControl()
-//require_once("header.php");
-//require_once("sidebar.php");
-//require_once("footer.php"); ?>
+$controller = new DisplayMusicMainPageActionControl() ?>
 
 <html>
 <head>
@@ -22,6 +19,7 @@ $controller = new DisplayMusicMainPageActionControl()
 <script src="jsCss/js/page-player.js"></script> <!-- Page Player -->
 <script src="jsCss/js/optional-page-player-metadata.js"></script> <!-- Meta UI -->
 <script src="jsCss/js/app.js"></script> <!-- Page js -->
+<script src="jsCss/js/jquery.session.js"></script> <!-- JQ Session js -->
 
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css" /><!-- soundManager API END-->
 <link rel="stylesheet" type="text/css" href="jsCss/css/page-player.css" /><!-- Page player core CSS -->
@@ -64,7 +62,7 @@ $controller->printHeader("Search");
 </ul>
 </div>
 
-<?php $controller->printFooter(); ?>
+<?php $controller->printSearchFooter(); ?>
 
 </div>
 
@@ -81,7 +79,7 @@ $controller->printHeader("Favourite");
 </ul>
 </div>
 
-<?php $controller->printFooter(); ?>
+<?php $controller->printFavFooter(); ?>
 
 </div>
 
@@ -99,12 +97,13 @@ $controller->printHeader("Playlist");
 </ul>
 </div>
 
-<?php $controller->printFooter(); ?>
+<?php $controller->printPlaylistFooter(); ?>
 
 </div>
 
 
 </div>
+<div id="songPlaying"></div>
 
 </body>
 </html>

@@ -3,12 +3,8 @@ include_once 'MainActionControl.php';
 
 class DisplayMusicMainPageActionControl extends MainActionControl
 {
-	public function printSongList($url,$name){ // Need to change
-		echo <<<EOF
-<li><a
-		href="
-EOF;
-		echo $url;
+	public function printSongList($url,$name,$id){ // Need to change
+		echo '<li><a class="song" id="'.$id.'" href="'.$url;
 		echo <<<EOF
 ">
 EOF;
@@ -21,88 +17,52 @@ EOF;
 
 	public function displayPopularList()
 	{
-		echo <<<EOD
-	<li><a
-		href="http://localhost:8888/3100/media/Music/Taylor Swift-I Knew You Were Trouble.mp3">Taylor Swift - I knew you where in trouble</a></li>
-	<li><a
-		href="http://data1.act.qq.com/200810/15/11/122404198538790.mp3?stdfrom=3&bg=0xcddff3&leftbg=0x357dce&lefticon=0xf2f2f2&rightbg=0x357dce&rightbghover=0x4499ee&righticon=0xf2f2f2&righticonhover=0xffffff&text=0x357dce&slider=0x357dce&track=0xffffff&border=0xffffff&loader=0x8ec2f4&autostart=yes&loop=yes&3">?w?¡±F
-	¢X¡VS.H.E </a></li>
-	<li><a href="http://www.xsdcsx.com/sourcefile/0/0/2/2601.mp3">¡±¡Ú¡±?¡±¡X
-	¢X¡VS.H.E</a></li>
-	<li><a
-		href="http://infinitinb.net/COFFdD0xMzYwNTk4OTI1Jmk9NjEuMTM1LjIwOS4yMDMmdT1Tb25ncy92Mi9mYWludFFDLzUzL2QxLzg0YjczZWNiZmE3MzliZTlkYzBhMWZkN2E3YjZkMTUzLm1wMyZtPWUyZjVjMTBjMDZmNzQxNDJkNGZmYTIwMWFlOTM1YzY5JnY9bGlzdGVuJm49w/zUy7XEvKrL+yZzPbCivKrX0CZwPW4=.mp3">?R£kB?¡ì?N¡EL
-	???N¡EJ </a></li>
-	<li><a href="http://view.33591.com:586/2012/11/11/15/1006625.mp3">PSY - Gungnam Style</a></li>
-
-EOD;
+		self::printSongList("http://localhost:8888/3100/media/Music/Taylor Swift-I Knew You Were Trouble.mp3",
+				    "Taylor Swift - I knew you where in trouble",1);
+		self::printSongList("http://data1.act.qq.com/200810/15/11/122404198538790.mp3?stdfrom=3&bg=0xcddff3&leftbg=0x357dce&lefticon=0xf2f2f2&rightbg=0x357dce&rightbghover=0x4499ee&righticon=0xf2f2f2&righticonhover=0xffffff&text=0x357dce&slider=0x357dce&track=0xffffff&border=0xffffff&loader=0x8ec2f4&autostart=yes&loop=yes&3",
+				    "SHE - ABC",2);
+		self::printSongList("http://www.xsdcsx.com/sourcefile/0/0/2/2601.mp3",
+				    "SHE - CDE",3);
+		self::printSongList("http://view.33591.com:586/2012/11/11/15/1006625.mp3",
+				    "PSY - Gungnam Style",4);
 	}
 	
 	public function displaySearchList()
 	{
-		echo <<<EOD
-	<li><a
-		href="http://lianzidi.com/COFFdD0xMzYwNTk5NTQzJmk9NjEuMTM1LjIwOS4yMDMmdT1Tb25ncy92MS9mYWludFFDL2Y3LzgyM2E5YTk5MTc0ODg1M2Y5NTc3MTFmZDBlMmE3MGY3Lm1wMyZtPTlkNDU5YjFjNzUzOTBjMTg4ZTYwNzZkNmExY2IwNDg4JnY9bGlzdGVuJm49u6jT1r+qusPByyZzPXMuaC5lJTIwJnA9bg==.mp3">?¡P¡±S??n¡±F
-	¢X¡VS.H.E</a></li>
-	<li><a
-		href="http://data1.act.qq.com/200810/15/11/122404198538790.mp3?stdfrom=3&bg=0xcddff3&leftbg=0x357dce&lefticon=0xf2f2f2&rightbg=0x357dce&rightbghover=0x4499ee&righticon=0xf2f2f2&righticonhover=0xffffff&text=0x357dce&slider=0x357dce&track=0xffffff&border=0xffffff&loader=0x8ec2f4&autostart=yes&loop=yes&3">?w?¡±F
-	¢X¡VS.H.E </a></li>
-	<li><a href="http://www.xsdcsx.com/sourcefile/0/0/2/2601.mp3">¡±¡Ú¡±?¡±¡X
-	¢X¡VS.H.E</a></li>
-	<li><a
-		href="http://infinitinb.net/COFFdD0xMzYwNTk4OTI1Jmk9NjEuMTM1LjIwOS4yMDMmdT1Tb25ncy92Mi9mYWludFFDLzUzL2QxLzg0YjczZWNiZmE3MzliZTlkYzBhMWZkN2E3YjZkMTUzLm1wMyZtPWUyZjVjMTBjMDZmNzQxNDJkNGZmYTIwMWFlOTM1YzY5JnY9bGlzdGVuJm49w/zUy7XEvKrL+yZzPbCivKrX0CZwPW4=.mp3">?R£kB?¡ì?N¡EL
-	???N¡EJ </a></li>
-	<li><a href="http://view.33591.com:586/2012/11/11/15/1006625.mp3">???nStyle
-	¢X¡VPSY</a></li>
-	<li><a
-		href="http://lianzidi.com/COFFdD0xMzYwNTk5ODk1Jmk9NjEuMTM1LjIwOS4yMDMmdT1Tb25ncy92MS9mYWludFFDLzc1L2YxMzc1Zjk5OGMxNzVkNGY0Njg2OTc0ZDlkYTZjNDc1Lm1wMyZtPWU5ODg0MjYyZDk3NTE0MDBkYTA0OWFkODZkZTk2ZDIyJnY9bGlzdGVuJm49TXIuVGF4aSZzPcnZxa7KsbT6JTIwJnA9bg==.mp3">Mr
-	Taxi ¢X¡V¡±¡Ò¡±k?¡EN</a></li>
-EOD;
+		self::printSongList("http://localhost:8888/3100/media/Music/Taylor Swift-I Knew You Were Trouble.mp3",
+				    "Taylor Swift - I knew you where in trouble",5);
+		self::printSongList("http://data1.act.qq.com/200810/15/11/122404198538790.mp3?stdfrom=3&bg=0xcddff3&leftbg=0x357dce&lefticon=0xf2f2f2&rightbg=0x357dce&rightbghover=0x4499ee&righticon=0xf2f2f2&righticonhover=0xffffff&text=0x357dce&slider=0x357dce&track=0xffffff&border=0xffffff&loader=0x8ec2f4&autostart=yes&loop=yes&3",
+				    "SHE - ABC",6);
+		self::printSongList("http://www.xsdcsx.com/sourcefile/0/0/2/2601.mp3",
+				    "SHE - CDE",7);
+		self::printSongList("http://view.33591.com:586/2012/11/11/15/1006625.mp3",
+				    "PSY - Gungnam Style",8);
 		
 	}
 	
 	public function displayFavouriteList()
 	{
-		echo <<<EOD
-	<li><a
-		href="http://lianzidi.com/COFFdD0xMzYwNTk5NTQzJmk9NjEuMTM1LjIwOS4yMDMmdT1Tb25ncy92MS9mYWludFFDL2Y3LzgyM2E5YTk5MTc0ODg1M2Y5NTc3MTFmZDBlMmE3MGY3Lm1wMyZtPTlkNDU5YjFjNzUzOTBjMTg4ZTYwNzZkNmExY2IwNDg4JnY9bGlzdGVuJm49u6jT1r+qusPByyZzPXMuaC5lJTIwJnA9bg==.mp3">?¡P¡±S??n¡±F
-	¢X¡VS.H.E</a></li>
-	<li><a
-		href="http://data1.act.qq.com/200810/15/11/122404198538790.mp3?stdfrom=3&bg=0xcddff3&leftbg=0x357dce&lefticon=0xf2f2f2&rightbg=0x357dce&rightbghover=0x4499ee&righticon=0xf2f2f2&righticonhover=0xffffff&text=0x357dce&slider=0x357dce&track=0xffffff&border=0xffffff&loader=0x8ec2f4&autostart=yes&loop=yes&3">?w?¡±F
-	¢X¡VS.H.E </a></li>
-	<li><a href="http://www.xsdcsx.com/sourcefile/0/0/2/2601.mp3">¡±¡Ú¡±?¡±¡X
-	¢X¡VS.H.E</a></li>
-	<li><a
-		href="http://infinitinb.net/COFFdD0xMzYwNTk4OTI1Jmk9NjEuMTM1LjIwOS4yMDMmdT1Tb25ncy92Mi9mYWludFFDLzUzL2QxLzg0YjczZWNiZmE3MzliZTlkYzBhMWZkN2E3YjZkMTUzLm1wMyZtPWUyZjVjMTBjMDZmNzQxNDJkNGZmYTIwMWFlOTM1YzY5JnY9bGlzdGVuJm49w/zUy7XEvKrL+yZzPbCivKrX0CZwPW4=.mp3">?R£kB?¡ì?N¡EL
-	???N¡EJ </a></li>
-	<li><a href="http://view.33591.com:586/2012/11/11/15/1006625.mp3">???nStyle
-	¢X¡VPSY</a></li>
-	<li><a
-		href="http://lianzidi.com/COFFdD0xMzYwNTk5ODk1Jmk9NjEuMTM1LjIwOS4yMDMmdT1Tb25ncy92MS9mYWludFFDLzc1L2YxMzc1Zjk5OGMxNzVkNGY0Njg2OTc0ZDlkYTZjNDc1Lm1wMyZtPWU5ODg0MjYyZDk3NTE0MDBkYTA0OWFkODZkZTk2ZDIyJnY9bGlzdGVuJm49TXIuVGF4aSZzPcnZxa7KsbT6JTIwJnA9bg==.mp3">Mr
-	Taxi ¢X¡V¡±¡Ò¡±k?¡EN</a></li>
-
-EOD;
+		self::printSongList("http://localhost:8888/3100/media/Music/Taylor Swift-I Knew You Were Trouble.mp3",
+				    "Taylor Swift - I knew you where in trouble",9);
+		self::printSongList("http://data1.act.qq.com/200810/15/11/122404198538790.mp3?stdfrom=3&bg=0xcddff3&leftbg=0x357dce&lefticon=0xf2f2f2&rightbg=0x357dce&rightbghover=0x4499ee&righticon=0xf2f2f2&righticonhover=0xffffff&text=0x357dce&slider=0x357dce&track=0xffffff&border=0xffffff&loader=0x8ec2f4&autostart=yes&loop=yes&3",
+				    "SHE - ABC",10);
+		self::printSongList("http://www.xsdcsx.com/sourcefile/0/0/2/2601.mp3",
+				    "SHE - CDE",11);
+		self::printSongList("http://view.33591.com:586/2012/11/11/15/1006625.mp3",
+				    "PSY - Gungnam Style",12);
 		
 	}
 	
 	public function displayPlaylist()
 	{
-		echo <<<EOD
-	<li><a
-		href="http://lianzidi.com/COFFdD0xMzYwNTk5NTQzJmk9NjEuMTM1LjIwOS4yMDMmdT1Tb25ncy92MS9mYWludFFDL2Y3LzgyM2E5YTk5MTc0ODg1M2Y5NTc3MTFmZDBlMmE3MGY3Lm1wMyZtPTlkNDU5YjFjNzUzOTBjMTg4ZTYwNzZkNmExY2IwNDg4JnY9bGlzdGVuJm49u6jT1r+qusPByyZzPXMuaC5lJTIwJnA9bg==.mp3">?¡P¡±S??n¡±F
-	¢X¡VS.H.E</a></li>
-	<li><a
-		href="http://data1.act.qq.com/200810/15/11/122404198538790.mp3?stdfrom=3&bg=0xcddff3&leftbg=0x357dce&lefticon=0xf2f2f2&rightbg=0x357dce&rightbghover=0x4499ee&righticon=0xf2f2f2&righticonhover=0xffffff&text=0x357dce&slider=0x357dce&track=0xffffff&border=0xffffff&loader=0x8ec2f4&autostart=yes&loop=yes&3">?w?¡±F
-	¢X¡VS.H.E </a></li>
-	<li><a href="http://www.xsdcsx.com/sourcefile/0/0/2/2601.mp3">¡±¡Ú¡±?¡±¡X
-	¢X¡VS.H.E</a></li>
-	<li><a
-		href="http://infinitinb.net/COFFdD0xMzYwNTk4OTI1Jmk9NjEuMTM1LjIwOS4yMDMmdT1Tb25ncy92Mi9mYWludFFDLzUzL2QxLzg0YjczZWNiZmE3MzliZTlkYzBhMWZkN2E3YjZkMTUzLm1wMyZtPWUyZjVjMTBjMDZmNzQxNDJkNGZmYTIwMWFlOTM1YzY5JnY9bGlzdGVuJm49w/zUy7XEvKrL+yZzPbCivKrX0CZwPW4=.mp3">?R£kB?¡ì?N¡EL
-	???N¡EJ </a></li>
-	<li><a href="http://view.33591.com:586/2012/11/11/15/1006625.mp3">PSY - Gungnam Style</a></li>
-	<li><a
-		href="http://lianzidi.com/COFFdD0xMzYwNTk5ODk1Jmk9NjEuMTM1LjIwOS4yMDMmdT1Tb25ncy92MS9mYWludFFDLzc1L2YxMzc1Zjk5OGMxNzVkNGY0Njg2OTc0ZDlkYTZjNDc1Lm1wMyZtPWU5ODg0MjYyZDk3NTE0MDBkYTA0OWFkODZkZTk2ZDIyJnY9bGlzdGVuJm49TXIuVGF4aSZzPcnZxa7KsbT6JTIwJnA9bg==.mp3">Mr
-	Taxi ¢X¡V¡±¡Ò¡±k?¡EN</a></li>
-EOD;
+		self::printSongList("http://localhost:8888/3100/media/Music/Taylor Swift-I Knew You Were Trouble.mp3",
+				    "Taylor Swift - I knew you where in trouble",13);
+		self::printSongList("http://data1.act.qq.com/200810/15/11/122404198538790.mp3?stdfrom=3&bg=0xcddff3&leftbg=0x357dce&lefticon=0xf2f2f2&rightbg=0x357dce&rightbghover=0x4499ee&righticon=0xf2f2f2&righticonhover=0xffffff&text=0x357dce&slider=0x357dce&track=0xffffff&border=0xffffff&loader=0x8ec2f4&autostart=yes&loop=yes&3",
+				    "SHE - ABC",14);
+		self::printSongList("http://www.xsdcsx.com/sourcefile/0/0/2/2601.mp3",
+				    "SHE - CDE",15);
+		self::printSongList("http://view.33591.com:586/2012/11/11/15/1006625.mp3",
+				    "PSY - Gungnam Style",16);
 
 	}
 	
@@ -136,12 +96,48 @@ EOD;
 <div data-theme="a" data-role="footer" data-position="fixed">
 <div class="ui-grid-b" style="text-align: center;">
 	<div class="ui-block-a"><h3 id="footerMsg">Bring you the best Music</h3></div>
-	<div class="ui-block-b"><a id="addList" href="index.html" data-role="button" data-icon="plus" data-iconpos="left">Add To List</a></div>
-	<div class="ui-block-c"><a id="addFav"href="index.html" data-role="button" data-icon="star" data-iconpos="left">Favourite</a></div>
+	<div class="ui-block-b"><a id="addList" data-role="button" data-icon="plus" data-iconpos="left">Add To List</a></div>
+	<div class="ui-block-c"><a id="addFav" data-role="button" data-icon="star" data-iconpos="left">Add to Favourite</a></div>
 </div>
 </div>
 EOD;
 	}
+	
+	public function printSearchFooter(){
+		echo <<<EOD
+<div data-theme="a" data-role="footer" data-position="fixed">
+<div class="ui-grid-b" style="text-align: center;">
+	<div class="ui-block-a"><h3 id="footerMsg">Bring you the best Music</h3></div>
+	<div class="ui-block-b"><a id="addListSearch" data-role="button" data-icon="plus" data-iconpos="left">Add To List</a></div>
+	<div class="ui-block-c"><a id="addFavSearch" data-role="button" data-icon="star" data-iconpos="left">Add to Favourite</a></div>
+</div>
+</div>
+EOD;
+	}
+	
+	
+	public function printFavFooter(){
+		echo <<<EOD
+<div data-theme="a" data-role="footer" data-position="fixed">
+<div class="ui-grid-b" style="text-align: center;">
+	<div class="ui-block-a"><h3 id="footerMsgFav">Bring you the best Music</h3></div>
+	<div class="ui-block-b"><a id="rmvFav" data-role="button" data-icon="delete" data-iconpos="left">Remove From Favourite</a></div>
+</div>
+</div>
+EOD;
+	}
+	
+	public function printPlaylistFooter(){
+		echo <<<EOD
+<div data-theme="a" data-role="footer" data-position="fixed">
+<div class="ui-grid-b" style="text-align: center;">
+	<div class="ui-block-a"><h3 id="footerMsgPlaylist">Bring you the best Music</h3></div>
+	<div class="ui-block-b"><a id="rmvList" data-role="button" data-icon="delete" data-iconpos="left">Remove from List</a></div>
+</div>
+</div>
+EOD;
+	}
+
 	
 	function printSiderBar(){
 		echo <<<EOF
@@ -163,7 +159,15 @@ EOD;
 EOF;
 
 	}
+}
 
+if (isset($_GET['action']))
+{
+	$controller = new DisplayMusicMainPageActionControl();
+	if ($_GET['action']=="fav")
+		$controller->displayFavouriteList();
+	if ($_GET['action']=="playlist")
+		$controller->displayPlaylist();
 }
 
 ?>
