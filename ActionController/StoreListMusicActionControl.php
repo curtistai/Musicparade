@@ -1,28 +1,45 @@
 <?php
+session_start();
 include_once 'MainActionControl.php';
 
 class StoreListMusicActionControl extends MainActionControl
 {
 
 	public function addMusicToList(){
-		$_SESSION['musicSerial'] = ;
-		
+		//$_SESSION['song'];
+		self::redirect();
 	}
 
 	public function saveCurrentMusicList(){
+		//$_SESSION['song'];
+		self::redirect();
+
 	}
 
 	public function removeMusicFromList(){
+		//$_SESSION['song'];
+		self::redirect();
+
+	}
+	
+	public function redirect(){
+		ob_start();
+		header("Location: ./ActionController/DisplayMusicMainPageActionControl.php?action=playlist");
+		ob_end_flush();
+		exit;
 	}
 }
 
 $controller = new StoreListMusicActionControl();
 $action = $_GET['action'];
 
-if ($action == "add"){
-	
-	
-}else if($action == "save")
+if ($action == "add")
+	$controller->addMusicToList();
+else if($action == "save")
+	$controller->addMusicToList();
+else if($action == "rm")
+	$controller->addMusicToList();
+
 
 
 ?>

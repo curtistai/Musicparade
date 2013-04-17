@@ -28,7 +28,6 @@ class FavoriteMusicActionControl extends MainActionControl
 	}
 }
 $controller = new FavoriteMusicActionControl();
-		echo "xxx".$_SESSION['facebookUserId'];
 
 if ($_GET['action']=="add")
 	$controller->addFavoriteMusic();

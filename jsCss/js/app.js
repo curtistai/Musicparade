@@ -19,6 +19,17 @@ $(document).ready(function(){
             $('#rmvFav').click(function(){
                         $("#playlistInfavourite").load("ActionController/FavoriteMusicActionControl.php?action=rm");       
             });
+            
+            $('#addList').click(function(){
+                        $("#playlistInplaylist").load("ActionController/StoreListMusicActionControl.php?action=add");       
+            });
+            $('#addListSearch').click(function(){
+                        $("#playlistInplaylist").load("ActionController/StoreListMusicActionControl.php?action=add");       
+            });
+            $('#rmvList').click(function(){
+                        $("#playlistInplaylist").load("ActionController/StoreListMusicActionControl.php?action=rm");       
+            });
+
 
                         
             $('.song').click(function(){
