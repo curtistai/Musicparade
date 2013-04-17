@@ -94,10 +94,11 @@ EOD;
 	public function printFooter(){
 		echo <<<EOD
 <div data-theme="a" data-role="footer" data-position="fixed">
-<div class="ui-grid-b" style="text-align: center;">
+<div class="ui-grid-c" style="text-align: center;">
 	<div class="ui-block-a"><h3 id="footerMsg">Bring you the best Music</h3></div>
 	<div class="ui-block-b"><a id="addList" data-role="button" data-icon="plus" data-iconpos="left">Add To List</a></div>
 	<div class="ui-block-c"><a id="addFav" data-role="button" data-icon="star" data-iconpos="left">Add to Favourite</a></div>
+	<div class="ui-block-d"><a class="share" id="shareFav" rel="external" href="./ActionController/PublishMusicFacebookActionControl.php" data-role="button" data-icon="star" data-iconpos="left">Share to Facebook</a></div>
 </div>
 </div>
 EOD;
@@ -106,10 +107,12 @@ EOD;
 	public function printSearchFooter(){
 		echo <<<EOD
 <div data-theme="a" data-role="footer" data-position="fixed">
-<div class="ui-grid-b" style="text-align: center;">
+<div class="ui-grid-c" style="text-align: center;">
 	<div class="ui-block-a"><h3 id="footerMsg">Bring you the best Music</h3></div>
 	<div class="ui-block-b"><a id="addListSearch" data-role="button" data-icon="plus" data-iconpos="left">Add To List</a></div>
 	<div class="ui-block-c"><a id="addFavSearch" data-role="button" data-icon="star" data-iconpos="left">Add to Favourite</a></div>
+	<div class="ui-block-d"><a class="share" id="shareSearch" rel="external" data-role="button" data-icon="star" data-iconpos="left">Share to Facebook</a></div>
+
 </div>
 </div>
 EOD;
@@ -122,6 +125,7 @@ EOD;
 <div class="ui-grid-b" style="text-align: center;">
 	<div class="ui-block-a"><h3 id="footerMsgFav">Bring you the best Music</h3></div>
 	<div class="ui-block-b"><a id="rmvFav" data-role="button" data-icon="delete" data-iconpos="left">Remove From Favourite</a></div>
+	<div class="ui-block-c"><a class="share" id="shareFav" rel="external" data-role="button" data-icon="star" data-iconpos="left">Share to Facebook</a></div>
 </div>
 </div>
 EOD;
@@ -133,6 +137,7 @@ EOD;
 <div class="ui-grid-b" style="text-align: center;">
 	<div class="ui-block-a"><h3 id="footerMsgPlaylist">Bring you the best Music</h3></div>
 	<div class="ui-block-b"><a id="rmvList" data-role="button" data-icon="delete" data-iconpos="left">Remove from List</a></div>
+	<div class="ui-block-c"><a class="share" id="sharePlayList" rel="external" data-role="button" data-icon="star" data-iconpos="left">Share to Facebook</a></div>
 </div>
 </div>
 EOD;

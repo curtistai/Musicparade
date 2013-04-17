@@ -6,18 +6,18 @@ class StoreListMusicActionControl extends MainActionControl
 {
 
 	public function addMusicToList(){
-		//$_SESSION['song'];
+		//$_SESSION['musSerai'];
 		self::redirect();
 	}
 
 	public function saveCurrentMusicList(){
-		//$_SESSION['song'];
+		//$_SESSION['musSerai'];
 		self::redirect();
 
 	}
 
 	public function removeMusicFromList(){
-		//$_SESSION['song'];
+		//$_SESSION['musSerai'];
 		self::redirect();
 
 	}

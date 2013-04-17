@@ -9,6 +9,8 @@ $(document).ready(function(){
 	    $('#rmvList').hide();
 	    $('#rmvFav').hide();
             $('#songPlaying').hide();
+            $('.share').hide();
+
 
             $('#addFav').click(function(){
                         $("#playlistInfavourite").load("ActionController/FavoriteMusicActionControl.php?action=add");       
@@ -30,9 +32,9 @@ $(document).ready(function(){
                         $("#playlistInplaylist").load("ActionController/StoreListMusicActionControl.php?action=rm");       
             });
 
-
                         
             $('.song').click(function(){
-                        $('#songPlaying').load("ActionController/SetSessionActionController.php?name=song&value="+$(this).attr('id'));
+                        $('#songPlaying').load("ActionController/SetSessionActionController.php?name=musSerai&value="+$(this).attr('id'));
+                        $('#songPlaying').load("ActionController/SetSessionActionController.php?name=musName&value="+$(this).text());
             });      
 });

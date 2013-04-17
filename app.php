@@ -13,7 +13,7 @@ $controller = new DisplayMusicMainPageActionControl() ?>
 <title>MusicParade</title>
 
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script	src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
+<script	src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
 <script src="jsCss/js/soundmanager2.js"></script><!-- soundManager API -->
 <script src="jsCss/js/sm.js"></script>
 <script src="jsCss/js/page-player.js"></script> <!-- Page Player -->

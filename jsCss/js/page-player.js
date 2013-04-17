@@ -328,13 +328,22 @@ function PagePlayer() {
         document.getElementById('addFavSearch').style.display = 'block';
         document.getElementById('rmvFav').style.display = 'block';
         document.getElementById('rmvList').style.display = 'block';
+        document.getElementById('shareFav').style.display = 'block';
+        document.getElementById('shareSearch').style.display = 'block';
+        document.getElementById('shareFav').style.display = 'block';
+        document.getElementById('sharePlayList').style.display = 'block';
+
+
 
       }else{
         document.getElementById('addList').style.display = 'none';
         document.getElementById('addFav').style.display = 'none';
         document.getElementById('rmvFav').style.display = 'none';
         document.getElementById('rmvList').style.display = 'none';
-        
+        document.getElementById('shareFav').style.display = 'none';
+        document.getElementById('shareSearch').style.display = 'none';
+        document.getElementById('shareFav').style.display = 'none';
+        document.getElementById('sharePlayList').style.display = 'none';
       }
     } catch(e) {
       // oh well

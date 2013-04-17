@@ -10,13 +10,13 @@ class FavoriteMusicActionControl extends MainActionControl
 
 	public function addFavoriteMusic()
 	{
-		//$_SESSION['song'];
+		//$_SESSION['musSerai'];
 		self::redirect();
 	}
 
 	public function removeFavoriteMusic()
 	{
-		//$_SESSION['song'];
+		//$_SESSION['musSerai'];
 		self::redirect();
 	}
 	
