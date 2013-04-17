@@ -3,7 +3,7 @@ function printHeader($subPageName){
 	echo <<< EOD
 <div id="header" data-theme="b" data-role="header" data-position="fixed">
 	<a href="#functions" data-icon="bars" data-iconpos="notext" data-shadow="false" data-iconshadow="false">Menu</a> 
-	<a href="https://m.facebook.com/dialog/oauth/?client_id=114535922062373&response_type=token&redirect_uri=http://curtis.taiserver.tk/3100/fb.php?&scope=email"
+	<a href="ActionController/LoginFacebookActionControl.php?action=login"
 			data-icon="gear" class="ui-btn-right">
 EOD;
 	if (isset($_SESSION['fbName'])){
@@ -17,6 +17,16 @@ EOD;
 	<h3>MusicParade
 EOD;
 		if ($subPageName!=""){
+			echo " | ".$subPageName;
+			
+		}
+		echo <<< EOD
+</h3>
+</div>	
+EOD;
+	}
+	
+?>
 			echo " | ".$subPageName;
 			
 		}

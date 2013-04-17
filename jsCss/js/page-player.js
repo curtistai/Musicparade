@@ -317,7 +317,14 @@ function PagePlayer() {
     }
     try {
       document.title = (sTitle?sTitle+' - ':'')+self.pageTitle;
-      document.getElementById('footerMsg').innerHTML = "Playing : "+(sTitle?sTitle+' - ':'');
+      document.getElementById('footerMsg').innerHTML = (sTitle?sTitle:'Bring you the best Music');
+      if (sTitle) {
+        document.getElementById('addList').style.display = 'block';
+        document.getElementById('addFav').style.display = 'block';
+      }else{
+        document.getElementById('addList').style.display = 'none';
+        document.getElementById('addFav').style.display = 'none';
+      }
     } catch(e) {
       // oh well
       self.setPageTitle = function() {

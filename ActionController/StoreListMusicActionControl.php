@@ -5,7 +5,8 @@ class StoreListMusicActionControl extends MainActionControl
 {
 
 	public function addMusicToList(){
-
+		$_SESSION['musicSerial'] = ;
+		
 	}
 
 	public function saveCurrentMusicList(){
@@ -14,5 +15,14 @@ class StoreListMusicActionControl extends MainActionControl
 	public function removeMusicFromList(){
 	}
 }
+
+$controller = new StoreListMusicActionControl();
+$action = $_GET['action'];
+
+if ($action == "add"){
+	
+	
+}else if($action == "save")
+
 
 ?>

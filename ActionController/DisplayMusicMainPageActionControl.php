@@ -9,6 +9,8 @@ class DisplayMusicMainPageActionControl extends MainActionControl
 	}
 }
 
+$controller = new DisplayMusicMainPageActionControl();
+$controller->onLoad();
 
 
 ?>
