@@ -20,36 +20,29 @@
             
             if (sizeof($member) == 0)
             {
+                
                 $memberEntity->insert($fbLName, $fbFName, $fbEMail, $facebookUserId);
                 $memberArray = $memberEntity->findByFacebook($facebookUserId);
                 $member = $memberArray[key($memberArray)];
-                $_SESSION['MemberLoginIn'] = $member;
+                
+                $musicListEntity = new MusicPlayList();
+                $musicListEntity->insert($member->getMemSerial(), "Music List");
+                
+                $_SESSION['MemberLoginSerial'] = $member->getMemSerial();
 
-                return $_SESSION['MemberLoginIn'];
+                return 0;
             }else{
-                $_SESSION['MemberLoginIn'] = $member;
+                $_SESSION['MemberLoginSerial'] = $member->getMemSerial();
                 return 1;
             }
             
         }
-
-        public static function registerUser($facebookUserId)
-        {
-            $memberEntity = new Member();
-            $memberSerial = $memberEntity->insert($facebookUserId);
-            
-            $musicListEntity = new MusicPlayList();
-            $musicListEntity->insert($memberSerial, "Music List");
-
-            return 1;
-        }
-
         
         /*
          @uses Return the music added into the list
          @return Return the music out if is removed, else return false if facing error
         */
-        public static function addMusicIntoList($memSerial, $musicSerial)
+        public function addMusicIntoList($musicSerial)
         {
             $musicEntity = new Music();
             $music = $musicEntity::findMusicBySerial($musicSerial);
@@ -70,17 +63,22 @@
                 
                 $musicListEntity = new MusicPlayList();
                 
-                $musListArray = $musicListEntity::findMusPlayListByMemSerial($memSerial);
+                print_r($_SESSION);
+                
+                $memberSerial = $_SESSION['MemberLoginSerial'];
+                
+                print_r($memberSerial);
+                
+                
+                $musListArray = $musicListEntity::findMusPlayListByMemSerial($memberSerial);
+                                
                 $musList = $musListArray[key($musListArray)];
+                                
                 $musListSerial = $musList->getMusListSerial();
-                
+                                
                 $musicListDetailEntity = new MusicPlayListDetail();
+
                 $musicListDetailEntity->insert($musicSerial, $musListSerial);
-                
-                self::$MusicList['mus01'] = 'play together';
-                print_r(self::$MusicList);
-                
-                #self::$MusicList = array($musicSerial=>$music);
             }
             
             return 1;
@@ -90,7 +88,7 @@
          @uses Return the music removed from the list
          @return Return the music out if is removed, else return false if facing error
         */
-        public static function removeMusicFromList($memSerial, $musicSerial)
+        public function removeMusicFromList($musicSerial)
         {
             $musicEntity = new Music();
             $music = $musicEntity::findMusicBySerial($musicSerial);
@@ -162,6 +160,7 @@
         {
             $musicEntity = new Music();
             $musics = $musicEntity->findMusicLikeName($musicName);
+                        
             
             return $musics;
         }
@@ -169,11 +168,11 @@
         /*
          @uses Add the favorite music into the database from user
         */
-        public static function addFavoriteMusic($musicSerial)
+        public function addFavoriteMusic($musicSerial)
         {
             $favouriteMusicEntity = new FavouriteMusic();
-            $currentMember = $_SESSION['MemberLoginIn'];
-            $memberSerial = $currentMember->getMemSerial();
+            $memberSerial = $_SESSION['MemberLoginSerial'];
+            
             $favouriteMusicEntity->insert($musicSerial, $memberSerial);
 
             return $musicSerial;
@@ -182,11 +181,11 @@
         /*
          @uses Remove the favorite music from the database from user
         */
-        public static function removeFavoriteMusic($musicSerial)
+        public function removeFavoriteMusic($musicSerial)
         {
             $favouriteMusicEntity = new FavouriteMusic();
-            $currentMember = $_SESSION['MemberLoginIn'];
-            $memberSerial = $currentMember->getMemSerial();
+            $memberSerial = $_SESSION['MemberLoginSerial'];
+
             $favouriteMusicEntity->deleteFavoriteMusicRecord($musicSerial, $memberSerial);
 
             return $musicSerial; 
@@ -197,27 +196,39 @@
         */
         public static function getMusicPlayList()
         {
-            $currentMember = $_SESSION['MemberLoginIn'];
-            $memberSerial = $currentMember->getMemSerial();
+            if (isset($_SESSION['MemberLoginSerial'])){
+                $memberSerial = $_SESSION['MemberLoginSerial'];
             
-            $musicListEntity = new MusicPlayList();
+                $musicListEntity = new MusicPlayList();
                 
-            $musList = $musicListEntity::findMusPlayListByMemSerial($memberSerial);
-            $musListSerial = $musList->getMusListSerial();
+                $musLists = $musicListEntity->findMusPlayListByMemSerial($memberSerial);
                 
-            $musicListDetailEntity = new MusicPlayListDetail();
-            $musInPlayListDetail = $musicListDetailEntity->findByMusListSerial($musListSerial);
+                $musicEntity = new Music();
+                $outMusList = array();
                 
-            $musicEntity = new Music();
-            $musList = array();
-            foreach($musInPlayListDetail as $musicDetail)
-            {
-                $musSerial = $musicDetail->getMusSerial();
-                $music = $musicEntity->findMusicBySerial($musSerial);
-                $musList[$music->getSerial()] = $music;
+                if (!empty($musLists)){
+                    foreach ($musLists as $musList){
+                        $musListSerial = $musList->getMusListSerial();
+                        
+                        $musicListDetailEntity = new MusicPlayListDetail();
+                        $musInPlayListDetail = $musicListDetailEntity->findByMusListSerial($musListSerial);
+                
+                        foreach($musInPlayListDetail as $musicDetail)
+                        {
+                            $musSerial = $musicDetail->getMusSerial();
+                            $music = $musicEntity->findMusicBySerial($musSerial);
+                            $outMusList[$music->getSerial()] = $music;
+                        }
+                    }
+
+                }
+                
+                return $outMusList;
+            
+            }else{
+                return 0;
             }
             
-            return $musList;
         }
         
         /*
@@ -225,23 +236,30 @@
         */
         public static function getFavoriteMusicList()
         {
-            $currentMember = $_SESSION['MemberLoginIn'];
-            $memberSerial = $currentMember->getMemSerial();
-            
-            $favoriteMusicEntity = new FavouriteMusic();
-            
-            $fmusList = $favoriteMusicEntity->findFavouriteMusicByMemSerial($memberSerial);;
+            if (isset($_SESSION['MemberLoginSerial'])){
+                                
+                $memberSerial = $_SESSION['MemberLoginSerial'];
                 
-            $musicEntity = new Music();
-            $musList = array();
-            foreach($fmusList as $favoriteMusic)
-            {
-                $musSerial = $favoriteMusic->getMusSerial();
-                $music = $musicEntity->findMusicBySerial($musSerial);
-                $musList[$music->getSerial()] = $music;
+                $favoriteMusicEntity = new FavouriteMusic();
+                
+                $fmusList = $favoriteMusicEntity->findFavouriteMusicByMemSerial($memberSerial);;
+                    
+                $musicEntity = new Music();
+                $musList = array();
+                
+                if (!empty($fmusList)){
+                    foreach($fmusList as $favoriteMusic)
+                    {
+                        $musSerial = $favoriteMusic->getMusSerial();
+                        $music = $musicEntity->findMusicBySerial($musSerial);
+                        $musList[$music->getSerial()] = $music;
+                    }
+                }
+                
+                return $musList;
+            }else{
+                return 0;
             }
-            
-            return $musList;
         }
                 
         /*
@@ -251,8 +269,8 @@
         {
             $musicEntity = new Music();                         
             $musList = $musicEntity::findMusic();                
-                        
-            return $musicList;
+            
+            return $musList;
         }
         
         

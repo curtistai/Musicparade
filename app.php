@@ -98,31 +98,26 @@ printHeader("Search");
 
 </body>
 </html>
-sition="fixed">
-	</div>	
-<div data-role="content">
-<ul class="playlist" id="playlistInfavourite">
-</ul>
-</div>
+rintFavFooter(); ?>
 
-<?php $controller->printFavFooter(); ?>
-<div id="favfooter" data-theme="a" data-role="footer" data-position="fixed">
-</div>
 </div>
 
 <!-- Playlist -->
 <div data-role="page" id="playlist">
-	<div data-role="panel" id="sidebar4" data-theme="a"
-	data-position="left" data-display="push">
-	</div>
-	<div id="header4" data-theme="b" data-role="header" data-position="fixed">
-	</div>	
+
+  <?php
+$controller->printSiderBar();
+$controller->printHeader("Playlist");
+ ?>
+
 <div data-role="content">
 <ul class="playlist" id="playlistInplaylist">
+	    <?php $controller->displayPlaylist(); ?>
 </ul>
 </div>
-<div id="playlistFooter" data-theme="a" data-role="footer" data-position="fixed">
-</div>
+
+<?php $controller->printPlaylistFooter(); ?>
+
 </div>
 
 

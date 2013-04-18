@@ -16,7 +16,7 @@
 
                     $systemControl = new MusicSysControl();
                     $_SESSION['sysControl'] = $systemControl;
-                    self::print_test('Music System Control initialized');
+                    #self::print_test('Music System Control initialized');
                     
                     #$systemControl->setTest();
 
@@ -25,7 +25,7 @@
                 #$systemControl = $_SESSION['sysControl'];
                 #echo $systemControl->getTest();
                 
-                error_reporting(-1);
+                #error_reporting(-1);
             }
             catch(Exception $ex)
             {

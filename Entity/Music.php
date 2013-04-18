@@ -11,7 +11,7 @@ class Music
 	private $musStoredPath;
 	private $artSerial;
 	
-	public function __construct($serial, $name, $date, $typeSerial, $storedPath,$artS)
+	public function __construct($serial, $name, $date, $storedPath, $typeSerial, $artS)
 	{
 		$this->musSerial = $serial;
 		$this->musName = $name;
@@ -129,13 +129,12 @@ class Music
 	public function findMusicBySerial($musicSerial)
 	{
 		$rawMusList = mysql_query("SELECT * FROM Music WHERE musSerial = $musicSerial");
-		$musList = array();
 		while (($record = mysql_fetch_array($rawMusList)))
 		{
-			$musList[$record[0]] = new Music($record[0], $record[1], $record[2], $record[3], $record[4],$record[5]);
+			$music = new Music($record[0], $record[1], $record[2], $record[3], $record[4],$record[5]);
+			return $music;
 		}
 
-		return $musList;
 	}
 	
 	// find music by ArtSerial

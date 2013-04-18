@@ -15,19 +15,20 @@ class SearchMusicActionControl extends MainActionControl
 
 
 	public function searchMusic(){ // directly echo li item and app.php load
+		#$searchMusicCommand = new SearchMusicCommand();
+		#$musicList = $searchMusicCommand->execute();
+		
 		echo <<<EOD
 	<li><a
-		href="http://lianzidi.com/COFFdD0xMzYwNTk5ODk1Jmk9NjEuMTM1LjIwOS4yMDMmdT1Tb25ncy92MS9mYWludFFDLzc1L2YxMzc1Zjk5OGMxNzVkNGY0Njg2OTc0ZDlkYTZjNDc1Lm1wMyZtPWU5ODg0MjYyZDk3NTE0MDBkYTA0OWFkODZkZTk2ZDIyJnY9bGlzdGVuJm49TXIuVGF4aSZzPcnZxa7KsbT6JTIwJnA9bg==.mp3">Mr
+		href="http://curtis.taiserver.tk/3100/media/Music/Boyfriend.mp3">Mr
 	Taxi SNSD</a></li>
 EOD;
+		#echo $musicList;
 	}
 
 }
 
 $controller = new SearchMusicActionControl();
-$_SESSION = $_GET["keyword"];
 $controller->searchMusic();
-
-
 
 ?>

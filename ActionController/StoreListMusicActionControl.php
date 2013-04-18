@@ -1,23 +1,27 @@
 <?php
 session_start();
 include_once 'MainActionControl.php';
+include_once '../Command/AddMusicInListCommand.php';
+include_once '../Command/RemoveMusicInListCommand.php';
 
 class StoreListMusicActionControl extends MainActionControl
 {
 
 	public function addMusicToList(){
-		//$_SESSION['musSerai'];
+		
+		$addMusicListCommand = new AddMusicInListCommand();
+		$addMusicListCommand->execute();
 		self::redirect();
 	}
 
 	public function saveCurrentMusicList(){
-		//$_SESSION['musSerai'];
 		self::redirect();
 
 	}
 
 	public function removeMusicFromList(){
-		//$_SESSION['musSerai'];
+		$removeMusicListCommand = new RemoveMusicInListCommand();
+		$removeMusicListCommand->execute();
 		self::redirect();
 
 	}

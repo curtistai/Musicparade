@@ -14,8 +14,8 @@ class MusicPlayListDetail
 
 	public function __construct($serial, $mSerial)
 	{
-		$this->musSerial = $serial;
-		$this->musListSerial = $mSerial;
+		$this->musSerial = $mSerial;
+		$this->musListSerial = $serial;
 		
 		
 	}
@@ -39,7 +39,8 @@ class MusicPlayListDetail
     //insert
 	public function insert($musS,$musListS)
 	{
-	   $insertMusicPlayListDetail = mysql_query("INSERT INTO MusicPlayListDetail VALUES ('".$musS.'\' ,\''.$musListS.'\')');
+		echo "INSERT INTO MusicPlayListDetail VALUES ('".$musListS."', '".$musS."')";
+	   $insertMusicPlayListDetail = mysql_query("INSERT INTO MusicPlayListDetail VALUES ('".$musListS."', '".$musS."')");
 	   
 	   if (!$insertMusicPlayListDetail) 
 		{die('Invalid query: ' . mysql_error());}
@@ -68,7 +69,7 @@ class MusicPlayListDetail
 		
 		while (($record = mysql_fetch_array($rawMusList)))
 		{
-			$musList[$record[0]] = new MusicPlayListDetail ($record[0], $record[1]);
+			array_push($musList, new MusicPlayListDetail($record[0], $record[1]));
 		}
 
 		return $musList;
@@ -81,9 +82,8 @@ class MusicPlayListDetail
 		
 		while (($record = mysql_fetch_array($rawMusList)))
 		{
-			$musList[$record[0]] = new MusicPlayListDetail ($record[0], $record[1]);
+			array_push($musList, new MusicPlayListDetail($record[0], $record[1]));
 		}
-
 		return $musList;
 	}
 	

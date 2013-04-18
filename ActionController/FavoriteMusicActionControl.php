@@ -1,6 +1,8 @@
 <?php
 session_start();
 include_once 'MainActionControl.php';
+include_once '../Command/AddFavoriteMusic.php';
+include_once '../Command/RemoveFavoriteMusic.php';
 
 
 class FavoriteMusicActionControl extends MainActionControl
@@ -10,13 +12,15 @@ class FavoriteMusicActionControl extends MainActionControl
 
 	public function addFavoriteMusic()
 	{
-		//$_SESSION['musSerai'];
+		$addFavoriteMusicCommand = new AddFavoriteMusic();
+		$addFavoriteMusicCommand->execute();
 		self::redirect();
 	}
 
 	public function removeFavoriteMusic()
 	{
-		//$_SESSION['musSerai'];
+		$removeFavoriteMusicCommand = new RemoveFavoriteMusic();
+		$removeFavoriteMusicCommand->execute();
 		self::redirect();
 	}
 	

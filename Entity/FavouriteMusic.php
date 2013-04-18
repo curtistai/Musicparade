@@ -13,7 +13,7 @@ class FavouriteMusic
 	
 	// constructor
 	
-	public function __construct($serial, $mSerial,$addDate)
+	public function __construct($addDate, $mSerial, $serial)
 	{
 		$this->musSerial = $serial;
 		$this->memSerial = $mSerial;
@@ -49,7 +49,7 @@ class FavouriteMusic
 	//insert
     public function insert($musS,$memS)
 	{
-	   $insertFavouriteMusic = mysql_query("INSERT INTO FavoriteMusic VALUES ('".date("Y-m-d").'\', \''.$musS.'\' , \''.$memS.'\')');
+	   $insertFavouriteMusic = mysql_query("INSERT INTO FavoriteMusic VALUES ('".date("Y-m-d").'\', \''.$memS.'\' , \''.$musS.'\')');
 	
 		if (!$insertFavouriteMusic) 
 		{die('Invalid query: ' . mysql_error());}

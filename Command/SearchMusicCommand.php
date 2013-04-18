@@ -14,13 +14,13 @@
          @uses Add the music from user selection by music serial, send the serial to system controller to insert into database
         */
         public function execute(){
-            parent::print_test('Run SearchMusicCommand');
+            #parent::print_test('Run SearchMusicCommand');
             parent::print_test('');
             
-            $musicName = $_SESSION['musicName'];
+            $keyword = $_SESSION['keyword'];
                         
             $sysControl = $_SESSION['sysControl'];
-            return $sysControl::searchMusic($musicName);
+            return $sysControl::searchMusic($keyword);
         }
         
     }

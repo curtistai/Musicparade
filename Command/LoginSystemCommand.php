@@ -15,7 +15,7 @@
          @return Return if the storing result is successful or not. True for ok, flase for fail
         */
         public function execute(){
-            parent::print_test('Run LoginSystemCommand');
+            #parent::print_test('Run LoginSystemCommand');
             parent::print_test('');
 
             $fbLName = $_SESSION['facebookUserLName'];
