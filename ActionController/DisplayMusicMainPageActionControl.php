@@ -1,5 +1,10 @@
 <?php
 include_once 'MainActionControl.php';
+include_once './Command/DisplayMainPageCommand.php';
+include_once './Command/SearchMusicCommand.php';
+include_once './Command/DisplayMusicListCommand.php';
+
+
 
 class DisplayMusicMainPageActionControl extends MainActionControl
 {
@@ -17,6 +22,19 @@ EOF;
 
 	public function displayPopularList()
 	{
+		$displayPageCommand = new DisplayMainPageCommand();
+		$musicList = $displayPageCommand->execute();
+		print_r($musicList);
+		
+		foreach ($musicList as $music)
+		{
+			$musSerial = $music->getSerial();
+			$musName = $music->getMusName();
+			$musPath = $music->getMusStoredPath();
+			
+			self::printSongList("http://".$_SERVER['HTTP_HOST']."/3100/media/Music/".$musPath, $musName, $musSerial);
+		}
+		
 		self::printSongList("http://localhost:8888/3100/media/Music/Taylor Swift-I Knew You Were Trouble.mp3",
 				    "Taylor Swift - I knew you where in trouble",1);
 		self::printSongList("http://data1.act.qq.com/200810/15/11/122404198538790.mp3?stdfrom=3&bg=0xcddff3&leftbg=0x357dce&lefticon=0xf2f2f2&rightbg=0x357dce&rightbghover=0x4499ee&righticon=0xf2f2f2&righticonhover=0xffffff&text=0x357dce&slider=0x357dce&track=0xffffff&border=0xffffff&loader=0x8ec2f4&autostart=yes&loop=yes&3",
@@ -29,6 +47,19 @@ EOF;
 	
 	public function displaySearchList()
 	{
+		$searchMusicCommand = new SearchMusicCommand();
+		$musicList = $searchMusicCommand->execute();
+		print_r($musicList);
+		
+		foreach ($musicList as $music)
+		{
+			$musSerial = $music->getSerial();
+			$musName = $music->getMusName();
+			$musPath = $music->getMusStoredPath();
+			
+			self::printSongList("http://".$_SERVER['HTTP_HOST']."/3100/media/Music/".$musPath, $musName, $musSerial);
+		}
+		
 		self::printSongList("http://localhost:8888/3100/media/Music/Taylor Swift-I Knew You Were Trouble.mp3",
 				    "Taylor Swift - I knew you where in trouble",5);
 		self::printSongList("http://data1.act.qq.com/200810/15/11/122404198538790.mp3?stdfrom=3&bg=0xcddff3&leftbg=0x357dce&lefticon=0xf2f2f2&rightbg=0x357dce&rightbghover=0x4499ee&righticon=0xf2f2f2&righticonhover=0xffffff&text=0x357dce&slider=0x357dce&track=0xffffff&border=0xffffff&loader=0x8ec2f4&autostart=yes&loop=yes&3",
@@ -55,6 +86,20 @@ EOF;
 	
 	public function displayPlaylist()
 	{
+		$displayMusicListCommand = new DisplayMusicListCommand();
+		$musicList = $displayMusicListCommand->execute();
+		print_r($musicList);
+		
+		foreach ($musicList as $music)
+		{
+			$musSerial = $music->getSerial();
+			$musName = $music->getMusName();
+			$musPath = $music->getMusStoredPath();
+			
+			self::printSongList("http://".$_SERVER['HTTP_HOST']."/3100/media/Music/".$musPath, $musName, $musSerial);
+		}
+		
+		
 		self::printSongList("http://localhost:8888/3100/media/Music/Taylor Swift-I Knew You Were Trouble.mp3",
 				    "Taylor Swift - I knew you where in trouble",13);
 		self::printSongList("http://data1.act.qq.com/200810/15/11/122404198538790.mp3?stdfrom=3&bg=0xcddff3&leftbg=0x357dce&lefticon=0xf2f2f2&rightbg=0x357dce&rightbghover=0x4499ee&righticon=0xf2f2f2&righticonhover=0xffffff&text=0x357dce&slider=0x357dce&track=0xffffff&border=0xffffff&loader=0x8ec2f4&autostart=yes&loop=yes&3",
@@ -68,7 +113,6 @@ EOF;
 	
 	public function printHeader($subPageName){
 	echo <<< EOD
-<div id="header" data-theme="b" data-role="header" data-position="fixed">
 	<a href="#functions" data-icon="bars" data-iconpos="notext" data-shadow="false" data-iconshadow="false">Menu</a> 
 	<a href="./ActionController/LoginFacebookActionControl.php?action=login"
 		rel="external"	data-icon="gear" class="ui-btn-right">
@@ -87,26 +131,22 @@ EOD;
 		}
 		echo <<< EOD
 </h3>
-</div>	
 EOD;
 	}
 	
 	public function printFooter(){
 		echo <<<EOD
-<div data-theme="a" data-role="footer" data-position="fixed">
 <div class="ui-grid-c" style="text-align: center;">
 	<div class="ui-block-a"><h3 id="footerMsg">Bring you the best Music</h3></div>
 	<div class="ui-block-b"><a id="addList" data-role="button" data-icon="plus" data-iconpos="left">Add To List</a></div>
 	<div class="ui-block-c"><a id="addFav" data-role="button" data-icon="star" data-iconpos="left">Add to Favourite</a></div>
 	<div class="ui-block-d"><a class="share" id="shareFav" rel="external" href="./ActionController/PublishMusicFacebookActionControl.php" data-role="button" data-icon="star" data-iconpos="left">Share to Facebook</a></div>
 </div>
-</div>
 EOD;
 	}
 	
 	public function printSearchFooter(){
 		echo <<<EOD
-<div data-theme="a" data-role="footer" data-position="fixed">
 <div class="ui-grid-c" style="text-align: center;">
 	<div class="ui-block-a"><h3 id="footerMsg">Bring you the best Music</h3></div>
 	<div class="ui-block-b"><a id="addListSearch" data-role="button" data-icon="plus" data-iconpos="left">Add To List</a></div>
@@ -114,31 +154,26 @@ EOD;
 	<div class="ui-block-d"><a class="share" id="shareSearch" rel="external" data-role="button" data-icon="star" data-iconpos="left">Share to Facebook</a></div>
 
 </div>
-</div>
 EOD;
 	}
 	
 	
 	public function printFavFooter(){
 		echo <<<EOD
-<div data-theme="a" data-role="footer" data-position="fixed">
 <div class="ui-grid-b" style="text-align: center;">
 	<div class="ui-block-a"><h3 id="footerMsgFav">Bring you the best Music</h3></div>
 	<div class="ui-block-b"><a id="rmvFav" data-role="button" data-icon="delete" data-iconpos="left">Remove From Favourite</a></div>
 	<div class="ui-block-c"><a class="share" id="shareFav" rel="external" data-role="button" data-icon="star" data-iconpos="left">Share to Facebook</a></div>
-</div>
 </div>
 EOD;
 	}
 	
 	public function printPlaylistFooter(){
 		echo <<<EOD
-<div data-theme="a" data-role="footer" data-position="fixed">
 <div class="ui-grid-b" style="text-align: center;">
 	<div class="ui-block-a"><h3 id="footerMsgPlaylist">Bring you the best Music</h3></div>
 	<div class="ui-block-b"><a id="rmvList" data-role="button" data-icon="delete" data-iconpos="left">Remove from List</a></div>
 	<div class="ui-block-c"><a class="share" id="sharePlayList" rel="external" data-role="button" data-icon="star" data-iconpos="left">Share to Facebook</a></div>
-</div>
 </div>
 EOD;
 	}
@@ -146,8 +181,6 @@ EOD;
 	
 	function printSiderBar(){
 		echo <<<EOF
-<div data-role="panel" id="functions" data-theme="a"
-	data-position="left" data-display="push">
 <button type="button" data-theme="c"
 	onclick="window.location = '#popular';">Popular</button>
 <button type="button" data-theme="c"
@@ -159,8 +192,6 @@ EOD;
 
 <button type="button" data-theme="c"
 	onclick="window.location = '#logout';">Logout</button>
-
-</div>
 EOF;
 
 	}
@@ -171,8 +202,24 @@ if (isset($_GET['action']))
 	$controller = new DisplayMusicMainPageActionControl();
 	if ($_GET['action']=="fav")
 		$controller->displayFavouriteList();
-	if ($_GET['action']=="playlist")
+	else if ($_GET['action']=="playlist")
 		$controller->displayPlaylist();
+	else if ($_GET['action']=="search")
+		$controller->displaySearchList();
+	else if ($_GET['action']=="popular")
+		$controller->displayPopularList();
+	else if ($_GET['action']=="sidebar")
+		$controller->printSiderBar();
+	else if ($_GET['action']=="header")
+		$controller->printHeader($_GET['pageName']);		
+	else if ($_GET['action']=="searchFooter")
+		$controller->printSearchFooter();
+	else if ($_GET['action']=="footer")
+		$controller->printFooter();
+	else if ($_GET['action']=="playlistfooter")
+		$controller->printPlaylistFooter();
+	else if ($_GET['action']=="favfooter")
+		$controller->printFavFooter();
 }
 
 ?>

@@ -1,5 +1,5 @@
 <?php
-    include_once 'MusicSysControl.php';
+    include_once '../Control/MusicSysControl.php';
     
     abstract class Command
     {

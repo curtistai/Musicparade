@@ -69,7 +69,7 @@ class Member
 	
 	public function insert($memLN,$memFN,$memE,$memFB)
 	{
-	   $insertMember = mysql_query("INSERT INTO Member(memLName,memFName,memEmail,memRegdate,memFacebook) VALUES ('".$memLN.'\' , \''.$memFN.'\' , \''.date("Y-m-d").'\' , \''.$memE.' \' , \''.$memFB.'\')');
+	   $insertMember = mysql_query("INSERT INTO Member(memLName,memFName,memEmail,memRegdate,memFacebook) VALUES ('".$memLN.'\' , \''.$memFN.'\' , \''.$memE.' \' , \''.date("Y-m-d").'\' , \''.$memFB.'\')');
 	   
 	   
 	   if (!$insertMember) 

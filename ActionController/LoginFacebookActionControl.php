@@ -1,5 +1,6 @@
 <?php
 include_once 'MainActionControl.php';
+include_once '../Command/LoginSystemCommand.php';
 
 class LoginFacebookActionControl extends MainActionControl
 {
@@ -40,11 +41,16 @@ EOD;
             $facebookUserId = $obj->{'id'};
             $fbFName = $obj->{'first_name'};
             $fbLName = $obj->{'last_name'};
+            $fbUEmail = $obj->{'email'};
             
             $_SESSION['facebookUserId'] = $facebookUserId;             
             $_SESSION['facebookUserLName'] = $fbLName;
             $_SESSION['facebookUserFName'] = $fbFName;
-
+            $_SESSION['facebookUserEmail'] = $fbUEmail;
+            
+            $command = new LoginSystemCommand();
+            print_r($command->execute());
+            
  
             header( 'Location: ../app.php' ) ;
             // Call Command

@@ -3,7 +3,8 @@
     require_once ('../Entity/Music.php');
     require_once ('../Entity/FavouriteMusic.php');
     require_once ('../Entity/MusicPlayList.php');
-    require_once ('../Entity/MusicPlayList.php');
+    require_once ('../Entity/MusicPlaylistDetail.php');
+    require_once ('../Entity/FavouriteMusic.php');
     
     class MusicSysControl
     {
@@ -11,18 +12,7 @@
         private static $MusicList = array();
         private $test;
         
-        /*
-         @return Return list of music for displaying the main page
-        */
-        public static function displayMainPage()
-        {
-            #$musicEntity = new Music();
-            #$musicList = $musicEntity::query();
-            
-            return $musicList;
-        }
-        
-        public static function loginSystem($facebookUserId)
+        public static function loginSystem($fbLName, $fbFName, $fbEMail, $facebookUserId)
         {
             $memberEntity = new Member();
             $memberArray = $memberEntity->findByFacebook($facebookUserId);
@@ -30,7 +20,12 @@
             
             if (sizeof($member) == 0)
             {
-                return 0;
+                $memberEntity->insert($fbLName, $fbFName, $fbEMail, $facebookUserId);
+                $memberArray = $memberEntity->findByFacebook($facebookUserId);
+                $member = $memberArray[key($memberArray)];
+                $_SESSION['MemberLoginIn'] = $member;
+
+                return $_SESSION['MemberLoginIn'];
             }else{
                 $_SESSION['MemberLoginIn'] = $member;
                 return 1;
@@ -200,20 +195,66 @@
         /*
          @return Return the music list request from user
         */
-        public static function getMusicList()
+        public static function getMusicPlayList()
         {
+            $currentMember = $_SESSION['MemberLoginIn'];
+            $memberSerial = $currentMember->getMemSerial();
             
             $musicListEntity = new MusicPlayList();
                 
-            $musList = $musicListEntity::findMusPlayListByMemSerial($memSerial);
+            $musList = $musicListEntity::findMusPlayListByMemSerial($memberSerial);
             $musListSerial = $musList->getMusListSerial();
                 
             $musicListDetailEntity = new MusicPlayListDetail();
-            $musicListDetailEntity->delete($musicSerial, $musListSerial);
+            $musInPlayListDetail = $musicListDetailEntity->findByMusListSerial($musListSerial);
                 
-                
-            return self::$MusicList;
+            $musicEntity = new Music();
+            $musList = array();
+            foreach($musInPlayListDetail as $musicDetail)
+            {
+                $musSerial = $musicDetail->getMusSerial();
+                $music = $musicEntity->findMusicBySerial($musSerial);
+                $musList[$music->getSerial()] = $music;
+            }
+            
+            return $musList;
         }
+        
+        /*
+         @return Return the music list request from user
+        */
+        public static function getFavoriteMusicList()
+        {
+            $currentMember = $_SESSION['MemberLoginIn'];
+            $memberSerial = $currentMember->getMemSerial();
+            
+            $favoriteMusicEntity = new FavouriteMusic();
+            
+            $fmusList = $favoriteMusicEntity->findFavouriteMusicByMemSerial($memberSerial);;
+                
+            $musicEntity = new Music();
+            $musList = array();
+            foreach($fmusList as $favoriteMusic)
+            {
+                $musSerial = $favoriteMusic->getMusSerial();
+                $music = $musicEntity->findMusicBySerial($musSerial);
+                $musList[$music->getSerial()] = $music;
+            }
+            
+            return $musList;
+        }
+                
+        /*
+         @return Return list of music for displaying the main page
+        */
+        public static function getMusicList()
+        {
+            $musicEntity = new Music();                         
+            $musList = $musicEntity::findMusic();                
+                        
+            return $musicList;
+        }
+        
         
         /*
          @uses Insert the error found into database

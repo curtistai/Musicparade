@@ -20,7 +20,7 @@
             $musicName = $_SESSION['musicName'];
                         
             $sysControl = $_SESSION['sysControl'];
-            $sysControl::searchMusic($musicName);
+            return $sysControl::searchMusic($musicName);
         }
         
     }

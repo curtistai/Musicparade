@@ -8,33 +8,53 @@ $(document).ready(function(){
 	    $('#addFavSearch').hide();            
 	    $('#rmvList').hide();
 	    $('#rmvFav').hide();
-            $('#songPlaying').hide();
-            $('.share').hide();
+        $('#songPlaying').hide();
+        $('.share').hide();
 
 
-            $('#addFav').click(function(){
-                        $("#playlistInfavourite").load("ActionController/FavoriteMusicActionControl.php?action=add");       
-            });
-            $('#addFavSearch').click(function(){
-                        $("#playlistInfavourite").load("ActionController/FavoriteMusicActionControl.php?action=add");       
-            });
-            $('#rmvFav').click(function(){
-                        $("#playlistInfavourite").load("ActionController/FavoriteMusicActionControl.php?action=rm");       
-            });
+        $('#addFav').click(function(){
+            $("#playlistInfavourite").load("ActionController/FavoriteMusicActionControl.php?action=add");       
+        });
+        $('#addFavSearch').click(function(){
+            $("#playlistInfavourite").load("ActionController/FavoriteMusicActionControl.php?action=add");       
+        });
+        $('#rmvFav').click(function(){
+            $("#playlistInfavourite").load("ActionController/FavoriteMusicActionControl.php?action=rm");       
+        });
             
-            $('#addList').click(function(){
-                        $("#playlistInplaylist").load("ActionController/StoreListMusicActionControl.php?action=add");       
-            });
-            $('#addListSearch').click(function(){
-                        $("#playlistInplaylist").load("ActionController/StoreListMusicActionControl.php?action=add");       
-            });
-            $('#rmvList').click(function(){
-                        $("#playlistInplaylist").load("ActionController/StoreListMusicActionControl.php?action=rm");       
-            });
+        $('#addList').click(function(){
+            $("#playlistInplaylist").load("ActionController/StoreListMusicActionControl.php?action=add");       
+        });
+        $('#addListSearch').click(function(){
+            $("#playlistInplaylist").load("ActionController/StoreListMusicActionControl.php?action=add");       
+        });
+        $('#rmvList').click(function(){
+            $("#playlistInplaylist").load("ActionController/StoreListMusicActionControl.php?action=rm");       
+        });
 
                         
-            $('.song').click(function(){
-                        $('#songPlaying').load("ActionController/SetSessionActionController.php?name=musSerai&value="+$(this).attr('id'));
-                        $('#songPlaying').load("ActionController/SetSessionActionController.php?name=musName&value="+$(this).text());
-            });      
+        $('.song').click(function(){
+           $('#songPlaying').load("ActionController/SetSessionActionController.php?name=musSerai&value="+$(this).attr('id'));
+           $('#songPlaying').load("ActionController/SetSessionActionController.php?name=musName&value="+$(this).text());
+        });      
+		$('#sidebar1').load("ActionController/DisplayMusicMainPageActionControl.php?action=sidebar");	
+		$('#sidebar2').load("ActionController/DisplayMusicMainPageActionControl.php?action=sidebar");
+		$('#sidebar3').load("ActionController/DisplayMusicMainPageActionControl.php?action=sidebar");
+		$('#sidebar4').load("ActionController/DisplayMusicMainPageActionControl.php?action=sidebar");
+		
+		$('#playlistInpopular').load("ActionController/DisplayMusicMainPageActionControl.php?action=popular");	
+		$('#playlistInSearch').load("ActionController/DisplayMusicMainPageActionControl.php?action=search");
+		$('#playlistInfavourite').load("ActionController/DisplayMusicMainPageActionControl.php?action=fav");
+		$('#playlistInplaylist').load("ActionController/DisplayMusicMainPageActionControl.php?action=playlist");
+
+		$('#header1').load("ActionController/DisplayMusicMainPageActionControl.php?action=header&pageName=Popular");	
+		$('#header2').load("ActionController/DisplayMusicMainPageActionControl.php?action=sidebar&pageName=Search");
+		$('#header3').load("ActionController/DisplayMusicMainPageActionControl.php?action=sidebar&pageName=Favourite");
+		$('#header4').load("ActionController/DisplayMusicMainPageActionControl.php?action=sidebar&pageName=Playlist");
+
+		$('#playlistFooter').load("ActionController/DisplayMusicMainPageActionControl.php?action=playlistfooter");
+		$('#footer').load("ActionController/DisplayMusicMainPageActionControl.php?action=footer");
+		$('#searchFooter').load("ActionController/DisplayMusicMainPageActionControl.php?action=searchFooter");
+		$('#favfooter').load("ActionController/DisplayMusicMainPageActionControl.php?action=favfooter");
+
 });

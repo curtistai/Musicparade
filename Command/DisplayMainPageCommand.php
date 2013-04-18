@@ -18,7 +18,7 @@
             parent::print_test('Run DisplayMainPageCommand');
             parent::print_test('');
 
-            return $sysControl::displayMainPage();
+            return $sysControl::getMusicList();
         }
         
     }

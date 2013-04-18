@@ -1,8 +1,6 @@
 <?php
 session_start();
-require_once("./ActionController/DisplayMusicMainPageActionControl.php");
-
-$controller = new DisplayMusicMainPageActionControl() ?>
+?>
 
 <html>
 <head>
@@ -32,73 +30,71 @@ $controller = new DisplayMusicMainPageActionControl() ?>
 <!-- Popular -->
 
 <div data-role="page" id="popular">
+	<div data-role="panel" id="sidebar1" data-theme="a"
+	data-position="left" data-display="push">
+	</div>
 
-<?php
-$controller->printSiderBar();
-$controller->printHeader("Popular");
- ?>
+<div id="header1" data-theme="b" data-role="header" data-position="fixed">
+</div>	
 <div data-role="content">
 <ul class="playlist" id="playlistInpopular">
-	    <?php $controller->displayPopularList(); ?>
 </ul>
 </div>
 
-<?php $controller->printFooter(); ?>
+<div id="footer" data-theme="a" data-role="footer" data-position="fixed">
+</div>
+
 
 </div>
 
 <!-- Search -->
 <div data-role="page" id="search">
-
-<?php
-$controller->printSiderBar();
-$controller->printHeader("Search");
- ?>
+	<div data-role="panel" id="sidebar2" data-theme="a"
+	data-position="left" data-display="push">
+	</div>
+	<div id="header2" data-theme="b" data-role="header" data-position="fixed">
+	</div>	
 <div id="searchDIV">
 <input id="searchbox" value="" placeholder="Join our Music Nation..." /> </div>
 <div data-role="content">
 <ul class="playlist" id="playlistInSearch">
-	    <?php $controller->displaySearchList(); ?>
 </ul>
 </div>
-
-<?php $controller->printSearchFooter(); ?>
+<div id="searchFooter" data-theme="a" data-role="footer" data-position="fixed">
+</div>
 
 </div>
 
 <!-- Favourite -->
 <div data-role="page" id="favourite">
-
- <?php
-$controller->printSiderBar();
-$controller->printHeader("Favourite");
- ?>
+	<div data-role="panel" id="sidebar3" data-theme="a"
+	data-position="left" data-display="push">
+	</div>
+	<div id="header3" data-theme="b" data-role="header" data-position="fixed">
+	</div>	
 <div data-role="content">
 <ul class="playlist" id="playlistInfavourite">
-	    <?php $controller->displayFavouriteList(); ?>
 </ul>
 </div>
 
 <?php $controller->printFavFooter(); ?>
-
+<div id="favfooter" data-theme="a" data-role="footer" data-position="fixed">
+</div>
 </div>
 
 <!-- Playlist -->
 <div data-role="page" id="playlist">
-
-  <?php
-$controller->printSiderBar();
-$controller->printHeader("Playlist");
- ?>
-
+	<div data-role="panel" id="sidebar4" data-theme="a"
+	data-position="left" data-display="push">
+	</div>
+	<div id="header4" data-theme="b" data-role="header" data-position="fixed">
+	</div>	
 <div data-role="content">
 <ul class="playlist" id="playlistInplaylist">
-	    <?php $controller->displayPlaylist(); ?>
 </ul>
 </div>
-
-<?php $controller->printPlaylistFooter(); ?>
-
+<div id="playlistFooter" data-theme="a" data-role="footer" data-position="fixed">
+</div>
 </div>
 
 

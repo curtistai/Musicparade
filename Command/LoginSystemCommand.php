@@ -18,10 +18,13 @@
             parent::print_test('Run LoginSystemCommand');
             parent::print_test('');
 
+            $fbLName = $_SESSION['facebookUserLName'];
+            $fbFName = $_SESSION['facebookUserFName'];
+            $fbEMail = $_SESSION['facebookUserEmail'];
             $facebookUserId = $_SESSION['facebookUserId'];
             
             $sysControl = $_SESSION['sysControl'];
-            return $sysControl::loginSystem($facebookUserId);
+            return $sysControl::loginSystem($fbLName, $fbFName, $fbEMail, $facebookUserId);
             
         }
         
