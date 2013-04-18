@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once ('view.php');
 ?>
 
 <html>
@@ -30,47 +31,74 @@ session_start();
 <!-- Popular -->
 
 <div data-role="page" id="popular">
-	<div data-role="panel" id="sidebar1" data-theme="a"
-	data-position="left" data-display="push">
-	</div>
-
-<div id="header1" data-theme="b" data-role="header" data-position="fixed">
-</div>	
+	
+<?php
+	    printSiderBar();
+	    printHeader("Popular");
+ ?>
 <div data-role="content">
 <ul class="playlist" id="playlistInpopular">
 </ul>
 </div>
 
-<div id="footer" data-theme="a" data-role="footer" data-position="fixed">
-</div>
+<?php printFooter(); ?>
 
 
 </div>
 
 <!-- Search -->
 <div data-role="page" id="search">
-	<div data-role="panel" id="sidebar2" data-theme="a"
-	data-position="left" data-display="push">
-	</div>
-	<div id="header2" data-theme="b" data-role="header" data-position="fixed">
-	</div>	
+
+<?php
+printSiderBar();
+printHeader("Search");
+ ?>
 <div id="searchDIV">
 <input id="searchbox" value="" placeholder="Join our Music Nation..." /> </div>
 <div data-role="content">
 <ul class="playlist" id="playlistInSearch">
 </ul>
 </div>
-<div id="searchFooter" data-theme="a" data-role="footer" data-position="fixed">
-</div>
+<?php printSearchFooter(); ?>
 
 </div>
 
 <!-- Favourite -->
 <div data-role="page" id="favourite">
-	<div data-role="panel" id="sidebar3" data-theme="a"
-	data-position="left" data-display="push">
-	</div>
-	<div id="header3" data-theme="b" data-role="header" data-position="fixed">
+ <?php
+	    printSiderBar();
+	    printHeader("Favourite");
+ ?>
+<div data-role="content">
+<ul class="playlist" id="playlistInfavourite">
+</ul>
+</div>
+
+<?php printFavFooter(); ?>
+</div>
+
+<!-- Playlist -->
+<div data-role="page" id="playlist">
+  <?php
+	    printSiderBar();
+	    printHeader("Playlist");
+ ?>
+<div data-role="content">
+<ul class="playlist" id="playlistInplaylist">
+</ul>
+<?php printPlaylistFooter(); ?>
+
+</div>
+
+</div>
+
+
+</div>
+<div id="songPlaying"></div>
+
+</body>
+</html>
+sition="fixed">
 	</div>	
 <div data-role="content">
 <ul class="playlist" id="playlistInfavourite">

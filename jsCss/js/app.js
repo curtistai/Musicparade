@@ -37,24 +37,10 @@ $(document).ready(function(){
            $('#songPlaying').load("ActionController/SetSessionActionController.php?name=musSerai&value="+$(this).attr('id'));
            $('#songPlaying').load("ActionController/SetSessionActionController.php?name=musName&value="+$(this).text());
         });      
-		$('#sidebar1').load("ActionController/DisplayMusicMainPageActionControl.php?action=sidebar");	
-		$('#sidebar2').load("ActionController/DisplayMusicMainPageActionControl.php?action=sidebar");
-		$('#sidebar3').load("ActionController/DisplayMusicMainPageActionControl.php?action=sidebar");
-		$('#sidebar4').load("ActionController/DisplayMusicMainPageActionControl.php?action=sidebar");
 		
-		$('#playlistInpopular').load("ActionController/DisplayMusicMainPageActionControl.php?action=popular");	
-		$('#playlistInSearch').load("ActionController/DisplayMusicMainPageActionControl.php?action=search");
-		$('#playlistInfavourite').load("ActionController/DisplayMusicMainPageActionControl.php?action=fav");
-		$('#playlistInplaylist').load("ActionController/DisplayMusicMainPageActionControl.php?action=playlist");
-
-		$('#header1').load("ActionController/DisplayMusicMainPageActionControl.php?action=header&pageName=Popular");	
-		$('#header2').load("ActionController/DisplayMusicMainPageActionControl.php?action=sidebar&pageName=Search");
-		$('#header3').load("ActionController/DisplayMusicMainPageActionControl.php?action=sidebar&pageName=Favourite");
-		$('#header4').load("ActionController/DisplayMusicMainPageActionControl.php?action=sidebar&pageName=Playlist");
-
-		$('#playlistFooter').load("ActionController/DisplayMusicMainPageActionControl.php?action=playlistfooter");
-		$('#footer').load("ActionController/DisplayMusicMainPageActionControl.php?action=footer");
-		$('#searchFooter').load("ActionController/DisplayMusicMainPageActionControl.php?action=searchFooter");
-		$('#favfooter').load("ActionController/DisplayMusicMainPageActionControl.php?action=favfooter");
+	    $('#playlistInpopular').load("ActionController/DisplayMusicMainPageActionControl.php?action=popular");	
+	    $('#playlistInSearch').load("ActionController/DisplayMusicMainPageActionControl.php?action=search");
+            $('#playlistInfavourite').load("ActionController/DisplayMusicMainPageActionControl.php?action=fav");
+	    $('#playlistInplaylist').load("ActionController/DisplayMusicMainPageActionControl.php?action=playlist");
 
 });

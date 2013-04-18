@@ -1,8 +1,8 @@
 <?php
 include_once 'MainActionControl.php';
-include_once './Command/DisplayMainPageCommand.php';
-include_once './Command/SearchMusicCommand.php';
-include_once './Command/DisplayMusicListCommand.php';
+include_once '../Command/DisplayMainPageCommand.php';
+include_once '../Command/SearchMusicCommand.php';
+include_once '../Command/DisplayMusicListCommand.php';
 
 
 
@@ -110,91 +110,6 @@ EOF;
 				    "PSY - Gungnam Style",16);
 
 	}
-	
-	public function printHeader($subPageName){
-	echo <<< EOD
-	<a href="#functions" data-icon="bars" data-iconpos="notext" data-shadow="false" data-iconshadow="false">Menu</a> 
-	<a href="./ActionController/LoginFacebookActionControl.php?action=login"
-		rel="external"	data-icon="gear" class="ui-btn-right">
-EOD;
-	if (isset($_SESSION['facebookUserLName'])){
-		echo $_SESSION['facebookUserLName'];
-	}else
-		echo "Login";
-	
-	echo <<<EOD
-</a><h3>MusicParade
-EOD;
-		if ($subPageName!=""){
-			echo " | ".$subPageName;
-			
-		}
-		echo <<< EOD
-</h3>
-EOD;
-	}
-	
-	public function printFooter(){
-		echo <<<EOD
-<div class="ui-grid-c" style="text-align: center;">
-	<div class="ui-block-a"><h3 id="footerMsg">Bring you the best Music</h3></div>
-	<div class="ui-block-b"><a id="addList" data-role="button" data-icon="plus" data-iconpos="left">Add To List</a></div>
-	<div class="ui-block-c"><a id="addFav" data-role="button" data-icon="star" data-iconpos="left">Add to Favourite</a></div>
-	<div class="ui-block-d"><a class="share" id="shareFav" rel="external" href="./ActionController/PublishMusicFacebookActionControl.php" data-role="button" data-icon="star" data-iconpos="left">Share to Facebook</a></div>
-</div>
-EOD;
-	}
-	
-	public function printSearchFooter(){
-		echo <<<EOD
-<div class="ui-grid-c" style="text-align: center;">
-	<div class="ui-block-a"><h3 id="footerMsg">Bring you the best Music</h3></div>
-	<div class="ui-block-b"><a id="addListSearch" data-role="button" data-icon="plus" data-iconpos="left">Add To List</a></div>
-	<div class="ui-block-c"><a id="addFavSearch" data-role="button" data-icon="star" data-iconpos="left">Add to Favourite</a></div>
-	<div class="ui-block-d"><a class="share" id="shareSearch" rel="external" data-role="button" data-icon="star" data-iconpos="left">Share to Facebook</a></div>
-
-</div>
-EOD;
-	}
-	
-	
-	public function printFavFooter(){
-		echo <<<EOD
-<div class="ui-grid-b" style="text-align: center;">
-	<div class="ui-block-a"><h3 id="footerMsgFav">Bring you the best Music</h3></div>
-	<div class="ui-block-b"><a id="rmvFav" data-role="button" data-icon="delete" data-iconpos="left">Remove From Favourite</a></div>
-	<div class="ui-block-c"><a class="share" id="shareFav" rel="external" data-role="button" data-icon="star" data-iconpos="left">Share to Facebook</a></div>
-</div>
-EOD;
-	}
-	
-	public function printPlaylistFooter(){
-		echo <<<EOD
-<div class="ui-grid-b" style="text-align: center;">
-	<div class="ui-block-a"><h3 id="footerMsgPlaylist">Bring you the best Music</h3></div>
-	<div class="ui-block-b"><a id="rmvList" data-role="button" data-icon="delete" data-iconpos="left">Remove from List</a></div>
-	<div class="ui-block-c"><a class="share" id="sharePlayList" rel="external" data-role="button" data-icon="star" data-iconpos="left">Share to Facebook</a></div>
-</div>
-EOD;
-	}
-
-	
-	function printSiderBar(){
-		echo <<<EOF
-<button type="button" data-theme="c"
-	onclick="window.location = '#popular';">Popular</button>
-<button type="button" data-theme="c"
-	onclick="window.location = '#favourite';">Favourite</button>
-<button type="button" data-theme="c"
-	onclick="window.location = '#playlist';">PlayList</button>
-<button type="button" data-theme="c"
-	onclick="window.location = '#search';">Search</button>
-
-<button type="button" data-theme="c"
-	onclick="window.location = '#logout';">Logout</button>
-EOF;
-
-	}
 }
 
 if (isset($_GET['action']))
@@ -208,18 +123,7 @@ if (isset($_GET['action']))
 		$controller->displaySearchList();
 	else if ($_GET['action']=="popular")
 		$controller->displayPopularList();
-	else if ($_GET['action']=="sidebar")
-		$controller->printSiderBar();
-	else if ($_GET['action']=="header")
-		$controller->printHeader($_GET['pageName']);		
-	else if ($_GET['action']=="searchFooter")
-		$controller->printSearchFooter();
-	else if ($_GET['action']=="footer")
-		$controller->printFooter();
-	else if ($_GET['action']=="playlistfooter")
-		$controller->printPlaylistFooter();
-	else if ($_GET['action']=="favfooter")
-		$controller->printFavFooter();
+
 }
 
 ?>
