@@ -14,19 +14,15 @@
          @uses Add the music from user selection by music serial, send the serial to system controller to insert into database
         */
         public function execute(){
-            #parent::print_test('Run AddFavoriteMusic');
+            parent::print_test('Run AddFavoriteMusic');
             parent::print_test('');
             
-            $musicSerial = $_SESSION['musSerial'];
-            
-            $sysControl = new MusicSysControl();
-            
-            $sysControl->addFavoriteMusic($musicSerial);
+            $musicSerial = $_SESSION['musicSerial'];
+                        
+            $sysControl = $_SESSION['sysControl'];
+            $sysControl::addFavoriteMusic($musicSerial);
         }
         
     }
-    
-    
-    $addFavoriteMusic = new AddFavoriteMusic();
-    $addFavoriteMusic->execute();
+
 ?>

@@ -1,5 +1,5 @@
 <?php
-    include_once '../Control/MusicSysControl.php';
+    include_once 'MusicSysControl.php';
     
     abstract class Command
     {
@@ -12,11 +12,13 @@
                 
                 session_start() or die();
                 
+                //If system controller has not been instantiate
+                //Put one into session
                 if ($_SESSION['sysControl'] == NULL){
-
+        
                     $systemControl = new MusicSysControl();
                     $_SESSION['sysControl'] = $systemControl;
-                    #self::print_test('Music System Control initialized');
+                    self::print_test('Music System Control initialized');
                     
                     #$systemControl->setTest();
 
@@ -25,7 +27,7 @@
                 #$systemControl = $_SESSION['sysControl'];
                 #echo $systemControl->getTest();
                 
-                #error_reporting(-1);
+                error_reporting(-1);
             }
             catch(Exception $ex)
             {

@@ -5,12 +5,17 @@ include_once '../Command/SearchMusicCommand.php';
 include_once '../Command/DisplayMusicListCommand.php';
 include_once '../Command/DisplayFavouriteMusicCommand.php';
 
+/*
+	Controller to help display songlist in the page
+*/
 
 
 class DisplayMusicMainPageActionControl extends MainActionControl
 {
+	/* Short function to help print a standard list element
+	*/
 	
-	public function printSongList($url,$name,$id){ // Need to change
+	public function printSongList($url,$name,$id){ 
 		echo '<li><a class="song" id="'.$id.'" href="'.$url;
 		echo <<<EOF
 ">
@@ -21,15 +26,15 @@ EOF;
 EOF;
 	}
 
-
+	/* code for printing popular list*/
 	public function displayPopularList()
 	{
 		#error_reporting(0);
 
-		$displayPageCommand = new DisplayMainPageCommand();
+		$displayPageCommand = new DisplayMainPageCommand(); /* call command function */
 		$musicList = $displayPageCommand->execute();
 		
-		foreach ($musicList as $music)
+		foreach ($musicList as $music) /* get result from command */
 		{
 			$musSerial = $music->getSerial();
 			$musName = $music->getMusName();
@@ -39,14 +44,16 @@ EOF;
 		}
 		
 	}
-	
+
+
+	/* code for printing search list*/
 	public function displaySearchList()
 	{
 		#error_reporting(0);
-		$searchMusicCommand = new SearchMusicCommand();
+		$searchMusicCommand = new SearchMusicCommand(); /* call command function */
 		$musicList = $searchMusicCommand->execute();
 				
-		foreach ($musicList as $music)
+		foreach ($musicList as $music) /* get result from command */
 		{
 			$musSerial = $music->getSerial();
 			$musName = $music->getMusName();
@@ -57,12 +64,13 @@ EOF;
 		
 	}
 	
+	/* code for display favourite list */
 	public function displayFavouriteList()
 	{
-		$displayFavouriteMusicCommand = new DisplayFavouriteMusicCommand();
+		$displayFavouriteMusicCommand = new DisplayFavouriteMusicCommand(); /* call command function */
 		$musicList = $displayFavouriteMusicCommand->execute();
 				
-		foreach ($musicList as $music)
+		foreach ($musicList as $music) /* get result from command */
 		{
 			$musSerial = $music->getSerial();
 			$musName = $music->getMusName();
@@ -74,14 +82,15 @@ EOF;
 		
 	}
 	
+	/* code for playlist*/
 	public function displayPlaylist()
 	{
 		#error_reporting(0);
 
-		$displayMusicListCommand = new DisplayMusicListCommand();
+		$displayMusicListCommand = new DisplayMusicListCommand(); /* call command function */
 		$musicList = $displayMusicListCommand->execute();
 		
-		foreach ($musicList as $music)
+		foreach ($musicList as $music)/* get result from command */
 		{
 			$musSerial = $music->getSerial();
 			$musName = $music->getMusName();
@@ -93,9 +102,10 @@ EOF;
 	
 }
 
+/* requested by GET function */
 if (isset($_GET['action']))
 {
-	$controller = new DisplayMusicMainPageActionControl();
+	$controller = new DisplayMusicMainPageActionControl(); /* open OO object */
 	if ($_GET['action']=="fav")
 		$controller->displayFavouriteList();
 	else if ($_GET['action']=="playlist")

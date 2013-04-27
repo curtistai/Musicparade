@@ -11,16 +11,16 @@
         }
         
         /*
-         @uses Add the music from user selection by music serial, send the serial to system controller to insert into database
+         @uses Search Music by returning the music gets from the controller 
         */
         public function execute(){
-            #parent::print_test('Run SearchMusicCommand');
+            parent::print_test('Run SearchMusicCommand');
             parent::print_test('');
             
-            $keyword = $_SESSION['keyword'];
+            $musicName = $_SESSION['musicName'];
                         
             $sysControl = $_SESSION['sysControl'];
-            return $sysControl::searchMusic($keyword);
+            $sysControl::searchMusic($musicName);
         }
         
     }

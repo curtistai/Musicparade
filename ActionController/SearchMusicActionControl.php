@@ -1,33 +1,29 @@
 <?php
 include_once 'MainActionControl.php';
 
-
+/* Handle search function */
 class SearchMusicActionControl extends MainActionControl
 {
 	private $musSerial;//int
 	private $musName;//String
 	private $command;
 	
+
 	//public function SearchMusicActionControl(){
-		//$command = new SearchMusicCommand();
-		//$command = $command->createCommand();
+	//	$command = new SearchMusicCommand();
+	//	$command = $command->createCommand();
 	//}
 
-
-	public function searchMusic(){ // directly echo li item and app.php load
-		#$searchMusicCommand = new SearchMusicCommand();
-		#$musicList = $searchMusicCommand->execute();
-		
-		echo <<<EOD
-	<li><a
-		href="http://curtis.taiserver.tk/3100/media/Music/Boyfriend.mp3">Mr
-	Taxi SNSD</a></li>
-EOD;
-		#echo $musicList;
+	// Keyword saved in the session, just directly call command
+	public function searchMusic(){ 
+		$searchMusicCommand = new SearchMusicCommand();
+		$musicList = $searchMusicCommand->execute();
+		echo $musicList;
 	}
 
 }
 
+/* handle by direct link */
 $controller = new SearchMusicActionControl();
 $controller->searchMusic();
 

@@ -14,7 +14,7 @@
          @uses Add the music from user selection by music serial, send the serial to system controller to insert into database
         */
         public function execute(){
-            #parent::print_test('Run ErrorFoundCommand');
+            parent::print_test('Run ErrorFoundCommand');
             parent::print_test('');
             
             $errorDescription = $_SESSION['errorDescription'];

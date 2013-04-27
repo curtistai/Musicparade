@@ -14,7 +14,7 @@
          @uses
         */
         public function execute(){
-            #parent::print_test('Run PublishMusicViaFacebook');
+            parent::print_test('Run PublishMusicViaFacebook');
             parent::print_test('');
             
             

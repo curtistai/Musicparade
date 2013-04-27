@@ -2,11 +2,15 @@
 include_once 'MainActionControl.php';
 session_start();
 
+/* handle facebook sharing */
+
 class PublishMusicFacebookActionControl extends MainActionControl
 {
 	private $musSerai; //int
 	private $musName; //String
 
+
+	/* it will redirect to facebook share page*/
 	public function publishMusicViaFacebook()
 	{
 		ob_start();
@@ -20,6 +24,8 @@ class PublishMusicFacebookActionControl extends MainActionControl
 
 	}
 }
+
+/* handle by direct link*/
 $command = new PublishMusicFacebookActionControl();
 $command->publishMusicViaFacebook();
 

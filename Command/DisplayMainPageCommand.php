@@ -15,12 +15,10 @@
          @return Return the list of music
         */
         public function execute(){
-            #parent::print_test('Run DisplayMainPageCommand');
+            parent::print_test('Run DisplayMainPageCommand');
             parent::print_test('');
-            
-            $sysControl = $_SESSION['sysControl'];
 
-            return $sysControl::getMusicList();
+            return $sysControl::displayMainPage();
         }
         
     }

@@ -1,4 +1,7 @@
 <?php
+/* group up some dynmaic common part into one php */
+
+/* print dynamic header */
     function printHeader($subPageName){
         echo <<< EOD
 <div id="header" data-theme="b" data-role="header" data-position="fixed">
@@ -6,7 +9,7 @@
         <a href="./ActionController/LoginFacebookActionControl.php?action=login"
                 rel="external"  data-icon="gear" class="ui-btn-right">
 EOD;
-        if (isset($_SESSION['facebookUserLName'])){
+        if (isset($_SESSION['facebookUserLName'])){ /* show facebook name if logined */
                 echo $_SESSION['facebookUserLName'];
         }else
                 echo "Login";
@@ -23,7 +26,8 @@ EOD;
 </div>  
 EOD;
         }
-        
+ 
+ /* print dynamic footer */       
 	function printFooter(){
                 echo <<<EOD
 <div data-theme="a" data-role="footer" data-position="fixed">
@@ -36,7 +40,8 @@ EOD;
 </div>
 EOD;
         }
-        
+ 
+ /* print search footer */       
         function printSearchFooter(){
                 echo <<<EOD
 <div data-theme="a" data-role="footer" data-position="fixed">
@@ -51,7 +56,7 @@ EOD;
 EOD;
         }
         
-        
+ /* print favourite footer */       
         function printFavFooter(){
                 echo <<<EOD
 <div data-theme="a" data-role="footer" data-position="fixed">
@@ -63,7 +68,8 @@ EOD;
 </div>
 EOD;
         }
-        
+  
+  /* print playlist footer */      
         function printPlaylistFooter(){
                 echo <<<EOD
 <div data-theme="a" data-role="footer" data-position="fixed">
@@ -76,7 +82,7 @@ EOD;
 EOD;
         }
 
-        
+  /* print sidebar */      
         function printSiderBar(){
                 echo <<<EOF
 <div data-role="panel" id="functions" data-theme="a"

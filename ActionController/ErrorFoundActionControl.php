@@ -1,5 +1,6 @@
 <?php
 	include_once 'MainActionControl.php';
+	/* for error catching */
 	
 	class ErrorFoundActionControl extends MainActionControl
 	{
